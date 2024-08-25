@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vojan Express</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'image/favicon.svg' %}">
+    <link rel="icon" type="image/png" href="{% static 'image/favicon.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Habibi,wght@0,400;1,400;" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+
+<body>
+   
+   
+
+    <div id="wrapper">
+        <div class="login_container">
+            <div class="left-panel">
+                <a href="{% url 'login' %}" class="btn login-btn">LOGIN</a>
+                <a href="{% url 'register' %}" class="btn register-btn">REGISTER</a>
+            </div>
+        </div>
+        <div class="container-login">
+            <div class="header">
+                <div class="Logo">
+                    <img src="{% static 'images/o-logo.png' %}" alt="Vojan Express">
+                </div>
+                <h1>Welcome!</h1>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <!-- <input type="text" id="full-name" name="full-name" required> -->
+                    {{ form.full_name }}
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <!-- <input type="text" id="username" name="username" required> -->
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <!-- <input type="email" id="email" name="email" required> -->
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <!-- <input type="password" id="password" name="password" required> -->
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                     <!-- <input type="confirm-password" id="confirm-password" name="confirm-password" required> -->
+                    {{ form.password2 }}
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="message">
+                    <p>{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <button type="submit" class="register">REGISTER</button>
+            </form>
+            <div class="social-container">
+                <span>Get in Touch</span>
+                <div class="social-icons">
+                    <i class="icon-fb"><img src="{% static 'images/fb.svg' %}" alt="fb"></i>
+                    <i class="icon-insta"><img src="{% static 'images/insta.svg' %}" alt="insta"></i>
+                    <i class="icon-pinterest"><img src="{% static 'images/pinterest.svg' %}" alt="pinterest"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

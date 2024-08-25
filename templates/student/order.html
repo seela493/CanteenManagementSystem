@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block link %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'order.css' %}">
+{% endblock link %}
+{% block search %}
+<div class="search-bar">
+    <input type="text" placeholder="What do you want to eat today?">
+    <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
+</div>
+{% endblock search %}
+
+{% block content %}
+
+<section class="content">
+    <h2>Order Bill</h2>
+    <span class="bill-code">Order #123</span>
+    <div class="order-items">
+        <div class="order-item">
+            <img src="{% static 'images/samosa2.jpg' %}" alt="Samosa">
+            <div class="item-details">
+                <div class="item-name">Samosa</div>
+                <div class="item-date">August 1, 2024, 8:22 AM</div>
+            </div>
+            <div class="item-price">+Rs.100</div>
+            <div class="quantity-controls">
+                <button class="decrease">−</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
+            </div>
+        </div>
+        <div class="order-item">
+            <img src="{% static 'images/vegmomo.jpg' %}" alt="Veg Momo">
+            <div class="item-details">
+                <div class="item-name">Veg Momo</div>
+                <div class="item-date">August 1, 2024, 8:23 AM</div>
+            </div>
+            <div class="item-price">+Rs.80</div>
+            <div class="quantity-controls">
+                <button class="decrease">−</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
+            </div>
+        </div>
+        <div class="order-item">
+            <img src="{% static 'images/aloochaat.jpg' %}" alt="Aloo Chaat">
+            <div class="item-details">
+                <div class="item-name">Aloo Chaat</div>
+                <div class="item-date">August 1, 2024, 8:26 AM</div>
+            </div>
+            <div class="item-price">+Rs.50</div>
+            <div class="quantity-controls">
+                <button class="decrease">−</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
+            </div>
+        </div>
+        <div class="order-item">
+            <img src="{% static 'images/vegchowmein.jpg' %}" alt="Veg Chowmein">
+            <div class="item-details">
+                <div class="item-name">Veg Chowmein</div>
+                <div class="item-date">August 1, 2024, 8:29 AM</div>
+            </div>
+            <div class="item-price">+Rs.150</div>
+            <div class="quantity-controls">
+                <button class="decrease">−</button>
+                <span class="quantity">2</span>
+                <button class="increase">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="total">
+        <span>Total:</span>
+        <span class="total-price">Rs.380</span>
+    </div>
+</section>
+
+{% endblock content %}

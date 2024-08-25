@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block link %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'setting.css' %}">
+{% endblock link %}
+{% block search %}
+<div class="search-bar">
+    <input type="text" placeholder="What do you want to eat today?">
+    <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
+</div>
+{% endblock search %}
+
+{% block content %}
+<section class="content">
+    <div class="logout-btn">
+        <a href="{% url 'login' %}" class="logout">LogOut</a>
+        <img src="{% static 'images/logout.svg' %}" alt="logout">
+    </div>
+    <div class="edit-container">
+        <h2>Edit Profile <span class="edit-icon"><img src="{% static 'images/edit.svg' %}"alt="edit"></span></h2>
+        <div class="profile-photo">
+            <img src="{% static 'images/profile2.png' %}" alt="Profile Photo">
+            <div class="photo-buttons">
+                <button class="add-photo">Add Photo</button>
+                <button class="remove-photo">Remove Photo</button>
+            </div>
+        </div>
+        <form class="profile-form" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" placeholder="David" required>
+                <input type="text" placeholder="Wittenberg" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="davidwittenberg99@gmail.com" required>
+                <input type="tel" placeholder="+819009723367" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Washington DC" required>
+                <input type="text" placeholder="USA" required>
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="discard-button">DISCARD</button>
+                <button type="submit" class="save-button">SAVE</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}
