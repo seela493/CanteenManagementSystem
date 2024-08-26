@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril Fatface:wght@400&display=swap" />
+    
     {% block link %}{% endblock link %}
 </head>
 
@@ -25,7 +25,6 @@
         </div>
        
         {% block search %}
-
         {% endblock search %}
         <div class="profile">
             <img src="{% static 'images/profile.png' %}" alt="Profile Icon">
@@ -39,33 +38,28 @@
                     <h1>Main Menu</h1>
                     <nav class="menu">
                         <ul>
-                            <li class="dash"><i class="icon"><img src="{% static 'images/dashboard.svg' %}"
-                                        alt="dashboard"></i><a href="{% url 'home' %}">Dashboard</a>
-                            </li>
-                            <li><i class="icon"><img src="{% static 'images/menu.svg' %}" alt="menu"></i><a
-                                    href="{% url 'menu' %}">Menu</a></li>
-                            <li><i class="icon"><img src="{% static 'images/orders.svg' %}" alt="orders"></i><a
-                                    href="{% url 'order' %}">Orders</a>
-                            </li>
-                            <li><i class="icon"><img src="{% static 'images/settings.svg' %}" alt="settings"></i><a
-                                    href="{% url 'setting' %}">Settings</a>
-                            </li>
+                            <li class="dash"><i class="icon"><img src="{% static 'images/dashboard.svg' %}" alt="dashboard"></i><a href="{% url 'home' %}">Dashboard</a></li>
+                            <li><i class="icon"><img src="{% static 'images/menu.svg' %}" alt="menu"></i><a href="{% url 'menu' %}">Menu</a></li>
+                            <li><i class="icon"><img src="{% static 'images/orders.svg' %}" alt="orders"></i><a href="{% url 'order' %}">Orders</a></li>
+                            <li><i class="icon"><img src="{% static 'images/settings.svg' %}" alt="settings"></i><a href="{% url 'setting' %}">Settings</a></li>
                         </ul>
                     </nav>
                 </aside>
                 {% block content %}
                 {% endblock content %}
             </div>
-            <div class="footer">
-                <p>Get In Touch</p>
-                <div class="social-icons">
-                    <a href="#"><img src="{% static 'images/fab.svg' %}" alt="Facebook"></a>
-                    <a href="#"><img src="{% static 'images/inst.svg' %}" alt="Instagram"></a>
-                    <a href="#"><img src="{% static 'images/pin.svg' %}" alt="pinterest"></a>
-                </div>
-                <p>&copy; VojanExpress. All Rights Reserved 2024. Licensing</p>
-            </div>
+        </div>
     </main>
+    {% block footer %}
+    <footer class="footer">
+        <p>Get In Touch</p>
+        <div class="social-icons">
+            <a href="#"><img src="{% static 'images/fab.svg' %}" alt="Facebook"></a>
+            <a href="#"><img src="{% static 'images/inst.svg' %}" alt="Instagram"></a>
+            <a href="#"><img src="{% static 'images/pin.svg' %}" alt="Pinterest"></a>
+        </div>
+        <p>&copy; VojanExpress. All Rights Reserved 2024. Licensing</p>
+    </footer>
+    {% endblock footer %}
 </body>
-
 </html>

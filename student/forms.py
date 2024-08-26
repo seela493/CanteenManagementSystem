@@ -83,15 +83,15 @@ class rfidform(forms.Form):
         widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'})
     )
     
-    # Change phone_number to CharField with MinLengthValidator and max_length
     phone_number = forms.CharField(
         max_length=10,
         validators=[MinLengthValidator(10)],
         widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number'})
     )
     
-    student_id = forms.IntegerField(
-        widget=forms.NumberInput(attrs={'placeholder': 'Enter your Student ID'})
+    student_id = forms.CharField(
+        max_length=10,  # You can adjust max_length based on the format of your IDs
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your Student ID'})
     )
     
     address = forms.CharField(
@@ -101,14 +101,13 @@ class rfidform(forms.Form):
     
     issuance_date = forms.DateField(
         required=False,
-        widget=forms.DateInput(attrs={'type': 'date'})  # Adds a date picker in HTML5
+        widget=forms.DateInput(attrs={'type': 'date'})
     )
     
     expiry_date = forms.DateField(
         required=False,
-        widget=forms.DateInput(attrs={'type': 'date'})  # Adds a date picker in HTML5
+        widget=forms.DateInput(attrs={'type': 'date'})
     )
     
-class EditProfileForm(forms.ModelForm):
-    password = None
+
     
