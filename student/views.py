@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm, rfidform
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import MenuItem, Cart, CartItem
+
 
 
 # Create your views here.
@@ -123,3 +125,23 @@ def order(request):
 @login_required
 def setting(request):
     return render(request, 'student/setting.html')
+
+
+
+@login_required
+def add_to_cart(request, menu_item_id):
+    menu_item = get_object_or_404(MenuItem, id=menu_item_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, menu_item=menu_item)
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect('cart')
+
+@login_required
+def cart_view(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = CartItem.objects.filter(cart=cart)
+    return render(request, 'cart.html', {'cart_items': cart_items})

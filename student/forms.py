@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
-from .models import StudentProfile
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(

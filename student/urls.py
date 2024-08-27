@@ -1,6 +1,7 @@
 
 from django.urls import path
 from student import views
+from .views import add_to_cart, cart_view   
 
 urlpatterns = [
     
@@ -13,5 +14,7 @@ urlpatterns = [
     path('menu/',views.menu, name = 'menu'),
     path('order/',views.order, name='order' ),
     path('setting/', views.setting, name='setting'),
+    path('add_to_cart/<int:menu_item_id>/', add_to_cart, name='add_to_cart'),
+    path('cart/', cart_view, name='cart'),
     
 ]
