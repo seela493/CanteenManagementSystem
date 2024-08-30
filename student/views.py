@@ -77,6 +77,10 @@ def register_view(request):
         form = RegistrationForm()
     return render(request, 'student/register.html', {'form': form})
 
+@login_required
+def about_view(request):
+    return render(request,'student/about.html')
+
 # Logout view
 @login_required
 def logout_view(request):

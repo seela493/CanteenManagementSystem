@@ -5,10 +5,10 @@
 {% endblock link %}
 
 {% block search %}
-        <div class="search-bar">
-            <input type="text" placeholder="What do you want to eat today?">
-            <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
-        </div>
+<div class="search-bar">
+    <input type="text" placeholder="What do you want to eat today?">
+    <i class="search-icon"><img src="images/search.svg" alt="search"></i>
+</div>
 {% endblock search %}
 {% block content %}
 <main class="content">
@@ -75,11 +75,7 @@
         </div>
     </div>
     <a href="{% url 'menu' %}" class="view-more">View More</a>
-    <div class="button-container">
-        <a href="{% url 'menu' %}" class="order-now-button">
-            <button class="order-now">Order Now</button>
-        </a>
-    </div>
+    <button class="order-now"><a href="menu.html">Order Now</a></button>
 </section>
 </div>
 {% endblock content %}

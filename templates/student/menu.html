@@ -3,6 +3,7 @@
 
 {% block link %}
     {{ block.super }}
+    <link rel="icon" type="image/svg" href="images/tab-logo.svg">
     <link rel="stylesheet" href="{% static 'menu.css' %}">
 {% endblock link %}
 
@@ -11,10 +12,35 @@
     <input type="text" placeholder="What do you want to eat today?">
     <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
 </div>
+<div class="profile-content">
+    <div class="add-to-cart">
+        <a class="cart" href="#" onclick="toggleCartPopup()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </a>
+    </div>
+</div>
 {% endblock search %}
 
 {% block content %}
-<section class="content">
+<div class="main-container">
+    <div class="content">
+        <div id="cart-popup" class="cart-count">
+            <h4>Order Cart</h4>
+            <table id="cart-items">
+                <thead>
+                    <tr>
+                        <th>Food</th>
+                        <th>#</th>
+                        <th>Price(Rs.)</th>
+                        <th>Total(Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p>Total(Rs.) <span id="cart-total">0.00</span></p>
+            <a class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></a>
+        </div>
     <div class="blnc-container">
         <div class="topic">
             <span>Your Balance</span>
@@ -34,7 +60,7 @@
     <div class="promo">
         <img src="{% static 'images/offer.png' %}" alt="promo image">
     </div>
-</section>
+
 
 <section class="veg">
     <h2>Veg Options</h2>
@@ -46,10 +72,10 @@
                 <p>{{ item.name }}</p>
                 <div class="icon">
                     <span>Rs.{{ item.price }}/per plate</span>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" class="add-to-cart">Add to Cart</button>
-                    </form>
+                    <div class="button">
+                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Puri Tarkari', 90.00)">ADD TO
+                            CART</button>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -67,10 +93,10 @@
                 <p>{{ item.name }}</p>
                 <div class="icon">
                     <span>Rs.{{ item.price }}/per plate</span>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" class="add-to-cart">Add to Cart</button>
-                    </form>
+                    <div class="button">
+                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Chicken Pakoda', 80.00)">ADD TO
+                            CART</button>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -94,14 +120,21 @@
                         <h4>{{ item.name }}</h4>
                         <p>Rs.{{ item.price }}</p>
                     </div>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" class="add-to-cart"><img src="{% static 'images/add.svg' %}" alt="add"></button>
-                    </form>
+                    <div class="button">
+                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Coffe', 35.00)">ADD TO
+                            CART</button>
+                    </div>
                 </div>
                 {% endif %}
             {% endfor %}
         </div>
     </div>
 </section>
+
+<div class="btn">
+    <button class="cart"><a href="order.html">GO TO CART</a></button>
+</div>
+</div>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock content %}

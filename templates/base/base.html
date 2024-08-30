@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril Fatface:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg" href="images/tab-logo.svg">
     
     {% block link %}{% endblock link %}
 </head>
@@ -28,22 +30,21 @@
         {% endblock search %}
         <div class="profile">
             <img src="{% static 'images/profile.png' %}" alt="Profile Icon">
-            <a href="setting.html">Zayn Malik</a>
+            <a href="{% url 'setting' %}">Nimesh Basnet</a>
         </div>
     </header>
     <main>
         <div class="main-container">
             <div class="site-main">
-                <aside class="sidebar">
-                    <h1>Main Menu</h1>
-                    <nav class="menu">
-                        <ul>
-                            <li class="dash"><i class="icon"><img src="{% static 'images/dashboard.svg' %}" alt="dashboard"></i><a href="{% url 'home' %}">Dashboard</a></li>
-                            <li><i class="icon"><img src="{% static 'images/menu.svg' %}" alt="menu"></i><a href="{% url 'menu' %}">Menu</a></li>
-                            <li><i class="icon"><img src="{% static 'images/orders.svg' %}" alt="orders"></i><a href="{% url 'order' %}">Orders</a></li>
-                            <li><i class="icon"><img src="{% static 'images/settings.svg' %}" alt="settings"></i><a href="{% url 'setting' %}">Settings</a></li>
-                        </ul>
-                    </nav>
+                <aside class="slide">
+                    <h1 class="menu-title">Main Menu</h1>
+                    <ul class="nav-links">
+                        <li><a href="{% url 'home' %}"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                        <li><a href="{% url 'menu' %}"><i class="fas fa-book"></i> Menu</a></li>
+                        <li><a href="{% url 'order' %}"><i class="fas fa-receipt"></i> Order</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fa-solid fa-info-circle"></i> About Us</a></li>
+                        <li><a href="{% url 'setting' %}l"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
                 </aside>
                 {% block content %}
                 {% endblock content %}

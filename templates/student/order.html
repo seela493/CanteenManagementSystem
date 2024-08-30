@@ -10,7 +10,7 @@
 {% endblock link %}
 
 {% block content %}
-<section class="content">
+<div class="container">
     <h2>Order Bill</h2>
     <span class="bill-code">Order #123</span>
     <div class="item">
@@ -75,6 +75,7 @@
         <span>Total:</span>
         <span class="total-price">Rs.380</span>
     </div>
-</section>
+</div>
+
 <script src="{% static 'js/order.js' %}"></script>
 {% endblock content %}
