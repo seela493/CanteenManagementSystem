@@ -210,30 +210,32 @@ h2:hover {
     color: #F2780D;
 }
 
+
 .veg .row,
 .non-veg .row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 20px;
+    margin: 20px 0;
 }
 
-.veg .veg-options,
-.non-veg .non-veg {
+.veg-options,
+.non-veg-options {
     background: #fff;
     border: 1px solid #AEACAC;
     padding: 40px 30px 20px 30px;
     border-radius: 20px;
     margin-bottom: 30px;
+    width: 30%;
+    text-align: center;
 }
 
 .veg p,
 .non-veg p {
-    text-align: center;
-    padding: 5px 0px 20px 0px;
+    margin-bottom: 20px;
 }
 
-.veg .icon,
-.non-veg .icon {
+.icon {
     display: flex;
     justify-content: space-between;
 }
@@ -243,7 +245,7 @@ h2:hover {
 }
 
 .drinks {
-    margin: 20px;
+    margin: 20px 0;
 }
 
 .drinks-category {
@@ -251,7 +253,6 @@ h2:hover {
     border: 1px solid #F2780D;
     padding: 10px 20px;
     border-radius: 20px;
-    position: relative;
 }
 
 .drink-topic {
@@ -261,37 +262,40 @@ h2:hover {
     padding: 20px 10px;
 }
 
-.drinks-row, .drink-item {
-    width: 100%;
+.drinks-row {
     display: flex;
-    justify-content: center;
-    gap: 10%;
-    background: #fff;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .drink-item {
+    background: #fff;
     border: 1px solid #D6D5D5;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
+    text-align: center;
+    width: 30%;
+}
+
+.drink-item img {
+    max-width: 100%;
+    height: auto;
 }
 
 .drinks-row h4 {
-    margin: 20px;
     font-size: 20px;
+    margin-top: 10px;
 }
 
 .drinks-row p {
     color: #F2780D;
-    padding-left: 30px;
-}
-
-.drink-item img {
-    width: auto;
+    margin-top: 5px;
 }
 
 .order-now {
-    margin: 2% 0% 1% 44%;
+    display: block;
+    margin: 20px auto;
     padding: 10px 30px;
     background-color: #fff;
     color: #000;
@@ -299,6 +303,12 @@ h2:hover {
     border-radius: 15px;
     cursor: pointer;
     font-size: 20px;
+    text-align: center;
+}
+
+.order-now:hover {
+    background-color: #F2780D;
+    color: #fff;
 }
 
 .order-now:hover {

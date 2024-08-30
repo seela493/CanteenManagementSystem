@@ -3,145 +3,158 @@ from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm, rfidform
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Item, Order, OrderItem
 from django.contrib import messages
-from .models import MenuItem, Cart, CartItem
+from django.utils import timezone
+from django.http import JsonResponse 
 
-
-
-# Create your views here.
+# Home view
 @login_required
 def home(request):
     return render(request, 'student/home.html')
 
+# Login view
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            # user = authenticate(request, username = username, password = password)
-            
             user = authenticate(request, username=username, password=password)
-
             if user is not None:
                 login(request, user)
                 messages.success(request, "You have successfully logged in.")
-                return redirect('home')  # Redirect to your homepage
+                return redirect('home')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "The form is invalid.")
     else:
         form = LoginForm()
-
     return render(request, 'student/login.html', {'form': form})
 
+# Registration view
 def register_view(request):
     if request.method == "POST":
-        full_name = request.POST.get('full_name')
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            full_name = form.cleaned_data.get('full_name')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
 
-        # Check if passwords match
-        if password1 != password2:
-            messages.error(request, "The passwords do not match.")
-            return render(request, 'student/register.html', {'form': RegistrationForm()})
-        
-        if len(password1) < 6:
-            messages.error(request, 'Password must be at least 6 characters.')
-            return render(request, 'student/register.html', {'form': RegistrationForm()})
-            
+            # Check if passwords match
+            if password1 != password2:
+                messages.error(request, "The passwords do not match.")
+                return redirect('register')
 
-        # Check if the username already exists
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists.")
-            return render(request, 'student/register.html', {'form': RegistrationForm()})
+            if len(password1) < 6:
+                messages.error(request, 'Password must be at least 6 characters.')
+                return redirect('register')
 
-        # Check if the email already exists
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already exists.")
-            return render(request, 'student/register.html', {'form': RegistrationForm()})
-        
-        name_parts = full_name.split(' ', 1)
-        first_name = name_parts[0]
-        last_name = name_parts[1] if len(name_parts) > 1 else ''
+            # Check if the username or email already exists
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "Username already exists.")
+                return redirect('register')
 
-        # Create the user since all conditions are met
-        user = User.objects.create_user(username=username, email=email, password=password1)
-        user.full_name = full_name  # Assign full_name to the first_name field
-        
-        user.save()
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email already exists.")
+                return redirect('register')
 
-        # Inform user and redirect to login page
-        messages.success(request, "User has been successfully registered! Please log in.")
-        return redirect('login')
+            # Create the user
+            user = User.objects.create_user(username=username, email=email, password=password1)
+            user.save()
 
-    # If not POST, display the registration form
-    form = RegistrationForm()
+            # Inform user and redirect to login page
+            messages.success(request, "User has been successfully registered! Please log in.")
+            return redirect('login')
+
+        else:
+            messages.error(request, "The form is invalid.")
+            form = RegistrationForm()
+    else:
+        form = RegistrationForm()
     return render(request, 'student/register.html', {'form': form})
 
-
-
+# Logout view
 @login_required
 def logout_view(request):
     logout(request)
-
     messages.success(request, "You have been logged out.")
     return redirect('login')
 
+# RFID form view
 @login_required
-def rfid_form_view(request):  # Changed the view name for clarity
+def rfid_form_view(request):
     if request.method == 'POST':
         form = rfidform(request.POST)
         if form.is_valid():
-            full_name = request.POST.get('full_name')
-            email_address = request.POST.get('email_address')
-            phone_number = request.POST.get('phone_number')
-            student_id = request.POST.get('student_id')
-            address = request.POST.get('address')
-            issuance_date = request.POST.get('issuance_date')
-            expiry_date = request.POST.get('expiry_date')
-            
-            # Save the data or perform any action
-            return redirect('home')  # Assuming 'home' is a valid URL name
+            form.save()  # Save the form if it's valid
+            messages.success(request, "RFID details have been saved.")
+            return redirect('home')
     else:
-        form = rfidform(request.POST)  # Initialize the form
-    
+        form = rfidform()  # Initialize the form
     return render(request, 'student/rfid.html', {'form': form})
 
-@login_required
-def menu(request):
-    return render(request, 'student/menu.html')
 
-@login_required
-def order(request):
-    return render(request, 'student/order.html')
-
+# Setting view
 @login_required
 def setting(request):
     return render(request, 'student/setting.html')
 
 
-
 @login_required
-def add_to_cart(request, menu_item_id):
-    menu_item = get_object_or_404(MenuItem, id=menu_item_id)
-    cart, created = Cart.objects.get_or_create(user=request.user)
+def order(request):
+    order = Order.objects.filter(user=request.user, is_ordered=False).first()  # Fetch the current cart
+    context = {'order': order}
+    return render(request, 'student/order.html', context)
 
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, menu_item=menu_item)
-    if not created:
-        cart_item.quantity += 1
-        cart_item.save()
 
-    return redirect('cart')
+# Menu view
+def menu(request):
+    items = Item.objects.all()  # Fetch all items from the database
+    return render(request, 'student/menu.html', {'items': items})
 
+# Add to cart view
 @login_required
-def cart_view(request):
-    cart, created = Cart.objects.get_or_create(user=request.user)
-    cart_items = CartItem.objects.filter(cart=cart)
-    return render(request, 'cart.html', {'cart_items': cart_items})
+def add_to_cart(request):
+    if request.method == "POST":
+        item_id = request.POST.get('item_id')
+        item = get_object_or_404(Item, id=item_id)
+        order, created = Order.objects.get_or_create(user=request.user, is_ordered=False)
+        order_item, created = OrderItem.objects.get_or_create(order=order, item=item)
+        
+        if not created:
+            order_item.quantity += 1
+            order_item.save()
+
+        # Return JSON response with updated order information
+        response = {
+            'status': 'success',
+            'item_name': item.name,
+            'item_image': item.image.url if item.image else None,
+            'item_price': str(item.price),
+            'total_price': str(order.get_total_price())
+        }
+        return JsonResponse(response)
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+# Place order view
+@login_required
+def place_order(request):
+    order = Order.objects.get(user=request.user, is_ordered=False)
+    order.is_ordered = True
+    order.date_ordered = timezone.now()
+    order.save()
+
+    messages.success(request, 'Your order has been placed successfully.')
+    return redirect('order')
+
+# Order history view
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-date_ordered')
+    context = {'orders': orders}
+    return render(request, 'student/order.html', context)

@@ -1,10 +1,11 @@
 
 from django.urls import path
 from student import views
-from .views import add_to_cart, cart_view   
+from django.conf import settings
+from django.conf.urls.static import static
+ 
 
 urlpatterns = [
-    
     path('', views.login_view, name = 'login'),
     path('login/',views.login_view, name= 'login'),
     path('register/', views.register_view, name = 'register'),
@@ -14,7 +15,6 @@ urlpatterns = [
     path('menu/',views.menu, name = 'menu'),
     path('order/',views.order, name='order' ),
     path('setting/', views.setting, name='setting'),
-    path('add_to_cart/<int:menu_item_id>/', add_to_cart, name='add_to_cart'),
-    path('cart/', cart_view, name='cart'),
-    
-]
+    path('add_to_cart/<int:item_id>/', views.add_to_cart, name='add_to_cart'),
+    path('place_order/', views.place_order, name='place_order'),
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_URL)
