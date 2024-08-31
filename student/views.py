@@ -7,6 +7,7 @@ from .models import Item, Order, OrderItem
 from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse 
+from django.core import serializers
 
 # Home view
 @login_required
@@ -118,7 +119,10 @@ def order(request):
 # Menu view
 def menu(request):
     items = Item.objects.all()  # Fetch all items from the database
-    return render(request, 'student/menu.html', {'items': items})
+    order = Order.objects.filter(user=request.user, is_ordered=False).first()
+    order_items = OrderItem.objects.filter(order=order).all() if order else None
+
+    return render(request, 'student/menu.html', {'items': items, 'order': order, 'order_items': order_items})
 
 # Add to cart view
 @login_required
@@ -140,7 +144,7 @@ def add_to_cart(request, item_id):
             'item_price': str(item.price),
             'total_price': str(order.get_total_price())
         }
-        return JsonResponse(response)
+        return redirect('menu')
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
