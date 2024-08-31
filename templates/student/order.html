@@ -12,9 +12,9 @@
 {% block content %}
 <div class="container">
     <h2>Order Bill</h2>
-    <span class="bill-code">Order #123</span>
+    <p class="order-number">Order #123</p>
     <div class="item">
-        <img src="{% static 'images/samosa2.jpg' %}" alt="Samosa">
+        <img src="images/samosa2.jpg" alt="Samosa">
         <div class="details">
             <p>Samosa</p>
             <span>August 1, 2024, 8:22 AM</span>
@@ -26,9 +26,8 @@
             <button class="increase">+</button>
         </div>
     </div>
-    
     <div class="item">
-        <img src="{% static 'images/vegmomo.jpg' %}" alt="Veg Momo">
+        <img src="images/vegmomo.jpg" alt="Veg Momo">
         <div class="details">
             <p>Veg Momo</p>
             <span>August 1, 2024, 8:23 AM</span>
@@ -42,7 +41,7 @@
     </div>
 
     <div class="item">
-        <img src="{% static 'images/aloochaat.jpg' %}" alt="Aloo Chaat">
+        <img src="images/aloochaat.jpg" alt="Aloo Chaat">
         <div class="details">
             <p>Aloo Chaat</p>
             <span>August 1, 2024, 8:23 AM</span>
@@ -56,7 +55,7 @@
     </div>
 
     <div class="item">
-        <img src="{% static 'images/vegchowmein.jpg' %}" alt="Veg Chowmein">
+        <img src="images/vegchowmein.jpg" alt="Veg Chowmein">
         <div class="details">
             <p>Veg Chowmein</p>
             <span>August 1, 2024, 8:23 AM</span>
@@ -69,13 +68,11 @@
         </div>
     </div>
 
-    <!-- Removed the extra closing div -->
-    
     <div class="total">
-        <span>Total:</span>
-        <span class="total-price">Rs.380</span>
+        <p>Total:</p>
+        <p>Rs.<span id="total-price">390</span></p>
     </div>
 </div>
-
 <script src="{% static 'js/order.js' %}"></script>
+
 {% endblock content %}

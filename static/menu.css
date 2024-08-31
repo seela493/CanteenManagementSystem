@@ -99,8 +99,10 @@ body {
     width: 85%;
 }
 
+
 .search-bar {
     position: relative;
+    left:15%;
 }
 
 .search-bar input {
@@ -126,6 +128,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     position: relative;
+    left: 25%;
 }
 
 .profile-content .add-to-cart {
@@ -309,16 +312,23 @@ h2 {
     cursor: pointer;
 }
 
-.veg .row,
-.non-veg .row {
+.veg .row{
     display: flex;
     justify-content: space-around;
     margin: 20px;
     cursor: pointer;
+    flex-wrap: wrap;
+}
+.non-veg .row{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    cursor: pointer;
+    flex-wrap: wrap;
 }
 
 .veg .veg-options,
-.non-veg .non-veg {
+.non-veg .non-veg-options{
     background: #fff;
     border: 1px solid #AEACAC;
     padding: 40px 30px 20px 30px;
@@ -349,14 +359,21 @@ h2 {
     background: #fff;
     border: 1px solid #F2780D;
     border-radius: 20px;
-    margin: 20px;
+    margin: 20px auto;
     padding: 10px;
-    position: relative;
+    width: 90%; /* Center and provide width */
 }
 
 .drinks-category {
-    padding: 10px 20px;
+    padding: 20px;
     border-radius: 20px;
+}
+
+.drink {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px;
 }
 
 .drinks-category .row {
@@ -365,25 +382,25 @@ h2 {
     justify-content: center;
 }
 
-.drink {
-    display: flex;
-    justify-content: space-around;
-    text-decoration: underline;
-    padding: 20px 5px;
-}
-
 h3 {
     text-align: center;
 }
 
 .col {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    align-items: center;
+    width: 48%; /* Make sure two items fit in a row */
+    margin: 10px;
+    padding: 10px;
     border: 1px solid #D6D5D5;
-    padding: 5px;
     border-radius: 10px;
-    margin: 5px;
+}
+
+.col img {
+    width: 80px; /* Ensure a consistent image size */
+    height: auto;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
 h4 {
@@ -393,17 +410,15 @@ h4 {
 
 .drink-info {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .drink-info p {
-    padding: 35px 5px 0 0;
-    font-size: 12px;
+    margin: 0;
+    padding: 5px 0;
     color: #F2780D;
-}
-
-.col img {
-    width: auto;
-    border-radius: 20px;
 }
 
 .col .button {

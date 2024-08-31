@@ -12,14 +12,9 @@ body {
 }
 
 .main-container {
-    padding: 0px;
+    padding: 0 0 10px 0;
     background-color: #fff;
-    border-radius: 40px;
-}
-
-.site-main {
-    display: flex;
-    justify-content: space-between;
+    border-radius: 50px;
 }
 
 .header {
@@ -31,27 +26,7 @@ body {
 }
 
 .logo img {
-    width: 80%;
-}
-
-.search-bar input {
-    width: 400px;
-    padding: 10px;
-    border-radius: 10px;
-    padding: 16px 0px 16px 70px;
-    background-color: #fff;
-    border: none;
-    position: relative;
-}
-
-.search-icon img {
-    width: 65%;
-}
-
-.search-icon {
-    position: absolute;
-    top: 4.5%;
-    left: 38%;
+    width: 85%;
 }
 
 .profile {
@@ -73,147 +48,150 @@ body {
     color: #fff;
 }
 
-.sidebar {
-    width: 14%;
+.site-main {
+    display: flex;
+}
+
+.slide {
+    width: 13%;
     height: 500px;
-    background-color: #fff;
-    border:2px solid #BFC0C0 ;
-    border-radius: 40px 0px 0px;
-    padding: 35px 0px 35px 35px;
+    background: #fff;
+    border: 2px solid #d9d9d9;
+    border-radius: 40px 0 0 0;
 }
 
-.sidebar h1 {
+h1 {
     color: #F2780D;
-    font-size: 20px;
-    font-weight: 400px;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+    margin: 5px 0px;
+    pointer-events: none;
 }
 
-.menu ul {
+ul li {
     list-style: none;
 }
 
-.menu ul li {
-    margin: 30px 0;
-}
-
-.menu ul li a {
+ul li a {
     color: #000;
+    padding: 20px 5px;
     text-decoration: none;
     font-size: 16px;
+    display: block;
 }
 
-.menu .menu-btn {
-    background-color: #F2780D;
-    padding: 5px;
+ul li:hover a {
+    color: #fff;
+    background: #F2780D;
 }
 
-.menu ul li:hover {
-    cursor: pointer;
-    background-color: #F2780D;
-    padding-left: 20px;
+ul li a i {
+    text-align: center;
+    width: 40px;
 }
 
-.icon {
-    margin-right: 15px;
-}
-
-.order-btn {
-    background-color: #F2780D;
-    padding: 5px;
-}
-
-.content {
-    flex: 1;
-    margin: 2%;
-    border: 1px solid #F2780D;
+.container {
+    width: 98%;
+    margin: 25px;
+    border: 2px solid #F2780D;
     padding: 0px 40px;
     border-radius: 40px;
-
 }
 
 h2 {
     text-align: center;
-    font-size: 24px;
+    margin: 30px 0px;
+    color: #000;
 }
 
-.content span {
+.order-number {
+    text-align: left;
     font-size: 18px;
+    margin-bottom: 20px;
+    color: #000;
 }
 
-.order-items {
-    padding-top: 20px;
+.item {
+    display: flex;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
 }
 
-.order-item {
+.item .details{
     display: flex;
-    align-items: center;
-    margin-bottom: 3%;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
 }
 
-.order-item img {
-    width: auto;
-    margin-right: 15px;
+.item img {
+    width: 25%;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 10px 20px 20px;
 }
 
-.item-details {
-    flex-grow: 1;
-    margin-left: 20px;
+.details {
+    flex: 1;
 }
 
-.item-name {
+.details p {
     font-size: 18px;
+    margin-bottom: 5px;
+    color: #000;
 }
 
-.item-date {
-    font-size: 12px;
-    color: #ccc;
+.details span {
+    font-size: 14px;
+    color: #777;
 }
 
-.item-price {
+.price {
     font-size: 16px;
     color: #F2780D;
-    margin-right: 10px;
-}
-
-.quantity-controls {
     display: flex;
     align-items: center;
-    border: 1px solid #F2780D;
-    border-radius: 8px;
+    padding-right: 20px;
 }
 
-.quantity-controls button {
-    background-color: transparent;
+.quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #F2780D;
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 85px;
+}
+
+.quantity button {
+    background-color: #fff;
     border: none;
-    padding: 5px 10px;
-    font-size: 18px;
+    color: #F2780D;
+    font-size: 20px;
     cursor: pointer;
 }
 
-.quantity-controls .quantity {
-    padding: 0 10px;
+.quantity input {
+    width: 40px;
+    text-align: center;
+    border: none;
     font-size: 16px;
+    padding: 0 10px;
+    color: #000;
 }
 
 .total {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    border: 1px solid #F2780D;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 15px;
-}
-
-.total .total-price {
-    text-decoration: underline;
-    color: #F2780D;
-}
-
-.total-price:hover {
-    cursor: pointer;
     color: #000;
+    border: 1px solid #F2780D;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 .footer {
@@ -230,4 +208,5 @@ h2 {
 .social-icons img {
     width: 100%;
     height: 24px;
+    margin: 5px;
 }
