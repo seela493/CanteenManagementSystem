@@ -23,10 +23,13 @@
 
 {% block content %}
 <main>
+
 <div class="main-container">
     <div class="content">
         <div id="cart-popup" class="cart-count">
             <h4>Order Cart</h4>
+            <p>Your order number is: {{order.order_number}}</p>
+
             <table id="cart-items">
                 <thead>
                     <tr>
@@ -36,9 +39,18 @@
                         <th>Total(Rs.)</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                {% for order_item in order_items %}
+                    <tr>
+                        <td>{{order_item.item.name}}</td>
+                        <td>{{order_item.quantity}}</td>
+                        <td>{{order_item.item.price}}</td>
+                        <td>{{order_item.total}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
             </table>
-            <p>Total(Rs.) <span id="cart-total">0.00</span></p>
+            <p>Total(Rs.) <span id="cart-total">{{order.get_total_price}}</span></p>
             <a class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></a>
         </div>
     <div class="blnc-container">
