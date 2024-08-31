@@ -72,10 +72,11 @@
                 <p>{{ item.name }}</p>
                 <div class="icon">
                     <span>Rs.{{ item.price }}/per plate</span>
-                    <div class="button">
-                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Puri Tarkari', 90.00)">ADD TO
+                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
                             CART</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             {% endif %}
@@ -93,10 +94,11 @@
                 <p>{{ item.name }}</p>
                 <div class="icon">
                     <span>Rs.{{ item.price }}/per plate</span>
-                    <div class="button">
-                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Chicken Pakoda', 80.00)">ADD TO
+                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
                             CART</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             {% endif %}
@@ -120,10 +122,11 @@
                         <h4>{{ item.name }}</h4>
                         <p>Rs.{{ item.price }}</p>
                     </div>
-                    <div class="button">
-                        <button id="cartBtn" class="add-to-cart-btn" onclick="addToCart('Coffe', 35.00)">ADD TO
+                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
                             CART</button>
-                    </div>
+                    </form>
                 </div>
                 {% endif %}
             {% endfor %}

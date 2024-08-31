@@ -10,7 +10,7 @@ class Item(models.Model):
         ('drink', 'Drink'),
     ]
     name = models.CharField(max_length=50)
-    image = models.ImageField(null=True, blank=True, upload_to='images')
+    image = models.ImageField(null=True, blank=True, upload_to='images/')
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='veg')
     price = models.DecimalField(max_digits=10, decimal_places=3)
     

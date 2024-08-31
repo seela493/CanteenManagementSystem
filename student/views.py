@@ -122,9 +122,8 @@ def menu(request):
 
 # Add to cart view
 @login_required
-def add_to_cart(request):
+def add_to_cart(request, item_id):
     if request.method == "POST":
-        item_id = request.POST.get('item_id')
         item = get_object_or_404(Item, id=item_id)
         order, created = Order.objects.get_or_create(user=request.user, is_ordered=False)
         order_item, created = OrderItem.objects.get_or_create(order=order, item=item)
