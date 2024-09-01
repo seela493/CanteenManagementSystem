@@ -112,7 +112,8 @@ def setting(request):
 @login_required
 def order(request):
     order = Order.objects.filter(user=request.user, is_ordered=False).first()  # Fetch the current cart
-    context = {'order': order}
+    order_items = OrderItem.objects.filter(order=order).all() if order else None
+    context = { 'order': order, 'order_items': order_items }
     return render(request, 'student/order.html', context)
 
 
