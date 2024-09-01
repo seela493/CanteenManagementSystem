@@ -149,6 +149,26 @@ def add_to_cart(request, item_id):
     
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
+@login_required
+def increase_in_cart(request, order_item_id):
+    order_item = get_object_or_404(OrderItem, id=order_item_id)
+    order_item.quantity += 1
+    order_item.save()
+    
+    return redirect('order')
+
+@login_required
+def decrease_in_cart(request, order_item_id):
+    order_item = get_object_or_404(OrderItem, id=order_item_id)
+    if(order_item.quantity == 1):
+        order_item.delete()
+    else:
+        order_item.quantity -= 1
+        order_item.save()
+
+    return redirect('order')
+
+
 # Place order view
 @login_required
 def place_order(request):
