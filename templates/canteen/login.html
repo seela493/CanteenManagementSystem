@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Habibi,wght@0,400;1,400;" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-    <title>Student Login</title>
+    <link rel="stylesheet" href="{% static 'canteen/login.css' %}">
+    <title>Canteen Login</title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
         <div class="login_container">
             <div class="left-panel">
                 <img src="" alt="">
-                <a href="login.html" class="login-btn">LOGIN</a>
-                <a href="{% url 'register' %}" class="register-btn">REGISTER</a>
+                <a href="{% url 'canteen_login' %}" class="login-btn">LOGIN</a>
+                <a href="{% url 'canteen_register' %}" class="register-btn">REGISTER</a>
             </div>
         </div>
         <div class="container-login">

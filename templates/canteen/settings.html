@@ -1,0 +1,45 @@
+{% extends 'base/canteenbase.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'canteen/settings.css' %}">
+{% endblock link %}
+
+{% block content %}
+<main>
+    <div class="main-container">
+        <div class="site-main">
+            <div class="content">
+                <div class="logout-btn"><a href="{% url 'canteen_login' %}" class="logout">LogOut<i class="fas fa-sign-out-alt"></i></a></div>
+                <div class="edit-container">
+                    <h2>Edit Profile <span class="edit-icon"><i class="fas fa-pen"></i></span></h2>
+                    <div class="profile-photo">
+                        <img src="../images/profile.png" alt="Profile Photo">
+                        <div class="photo-buttons">
+                            <button class="add-photo">Add Photo</button>
+                            <button class="remove-photo">Remove Photo</button>
+                        </div>
+                    </div>
+                    <form class="profile-form">
+                        <div class="input-group">
+                            <input type="text" placeholder="Nimesh" required>
+                            <input type="text" placeholder="Basnet" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="bnimesh99@gmail.com" required>
+                            <input type="tel" placeholder="+977-9808000000" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Kathmandu" required>
+                            <input type="text" placeholder="Nepal" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="discard-button">DISCARD</button>
+                            <button type="submit" class="save-button">SAVE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,166 @@
+{% extends 'base/canteenbase.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'canteen/home.css' %}">
+{% endblock link %}
+
+{% block content %}
+    <main>
+        <div class="main-container">
+            <div class="site-main">  
+                <section id="s-team" class="section">
+                    <div class="dashboard">
+                        <h2>Dashboard</h2>
+                        <p>Hi, David. Welcome back to Vojan Express!</p>
+                    </div>
+                    <div class="charts">
+                        <h3>Annual Report</h3>
+                        <div class="chart-header">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="chartCheckbox">
+                                <span class="checkmark"></span>
+                                Chart
+                            </label>
+                            <label class="toggle-container">
+                                <input type="checkbox" id="showValueToggle">
+                                <span class="toggle-mark"></span>
+                                Show Value
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="order-progress">
+                                    <span class="progress-value">0%</span>
+                                </div>
+                                <span class="text">Total Order</span>
+                            </div>
+                            <div class="col">
+                                <div class="customer-progress">
+                                    <span class="growth-value">0%</span>
+                                </div>
+                                <span class="text">Customer Growth</span>
+                            </div>
+                            <div class="col">
+                                <div class="revenue-progress">
+                                    <span class="revenue-value">0%</span>
+                                </div>
+                                <span class="text">Total Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <aside class="right-sidebar">
+                    <div class="date">
+                        <div class="calendar"><img src="{% static 'images/calender.svg' %}" alt="calendar"> 17th April 2020-21 May 2020</div>
+                    </div>
+                    <div class="add-menu">
+                        <div class="add-content">
+                            <p>Please, organize your <br> menus through button <br> below</p>
+                            <button class="menu"><a href="admin-menu.html"></a>+Add Menus</button>
+                        </div>
+                        <div class="content-image"><img src="{% static 'images/cook.svg' %}" alt="cook"></div>
+                    </div>
+                </aside>
+            </div>
+            <section class="category-container">
+                <h2>Category</h2>
+                <div class="categories">
+                    <img src="{% static 'images/01.png' %}" alt="veg">
+                    <img src="{% static 'images/02.png' %}" alt="fast-food">
+                    <img src="{% static 'images/03.png' %}" alt="cold-drinks">
+                    <img src="{% static 'images/04.png' %}" alt="non-veg">
+                    <img src="{% static 'images/05.png' %}" alt="curry">
+                    <img src="{% static 'images/06.png' %}" alt="hot-drinks">
+                </div>
+            </section>
+            <section class="recent-order">
+                <h2>Recent Order</h2>
+                <div class="order-row">
+                    <div class="col">
+                        <div class="image">
+                            <img src="{% static 'images/ad-paratha.jpg' %}" alt="alooparatha">
+                        </div>
+                        <p>Aloo Paratha</p>
+                        <span class="price">Rs. 50</span>
+                        <span class="time">. 11min</span>
+                    </div>
+                    <div class="col">
+                        <div class="image">
+                            <img src="{% static 'images/ad-pakoda.jpg' %}" alt="pakoda">
+                        </div>
+                        <p>Pakoda</p>
+                        <span class="price">Rs. 50</span>
+                        <span class="time">. 10min</span>
+                    </div>
+                    <div class="col">
+                        <div class="image">
+                            <img src="{% static 'images/ad-samosa-chat.jpg' %}" alt="samosachat">
+                        </div>
+                        <p>Samosa Chaat</p>
+                        <span class="price">Rs. 80</span>
+                        <span class="time">. 21min</span>
+                    </div>
+                </div>
+            </section>
+            <section class="popular-dishes">
+                <h2>Popular Dishes</h2>
+                <div class="dishes-container">
+                    <div class="dish-card">
+                        <div class="discount-badge">15% Off</div>
+                        <img src="{% static 'images/ad-samosa.png' %}" alt="Samosa">
+                        <div class="dish-details">
+                            <div class="rating">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <h3>Samosa</h3>
+                            <p class="price">Rs. 25</p>
+                            <button class="add-to-menu">+</button>
+                        </div>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="discount-badge">15% Off</div>
+                        <img src="{% static 'images/ad-alooparatha.png' %}" alt="Aloo Paratha">
+                        <div class="dish-details">
+                            <div class="rating">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <h3>Aloo Paratha</h3>
+                            <p class="price">Rs. 50</p>
+                            <button class="add-to-menu">+</button>
+                        </div>
+                    </div>
+
+                    <div class="dish-card">
+                        <div class="discount-badge">15% Off</div>
+                        <img src="{% static 'images/ad-paneer.png' %}" alt="Matar Paneer">
+                        <div class="dish-details">
+                            <div class="rating">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <h3>Matar Paneer</h3>
+                            <p class="price">Rs. 40</p>
+                            <button class="add-to-menu">+</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="edit-content">
+                <button class="edit"><a href="ad-menu.html">Edit ></a></button>
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'js/chart.js' %}"></script>
+{% endblock content %}

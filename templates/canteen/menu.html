@@ -1,0 +1,36 @@
+{% extends 'base/canteenbase.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'canteen/menu.css' %}">
+{% endblock link %}
+
+{% block content %}
+<main>
+    <div class="main-container">
+        <div class="site-main">
+            <div class="menu-container">
+            <div class="menu-item">
+                <!-- Correct the image path using the static template tag -->
+                <img src="{% static 'images/ad-veg.png' %}" alt="Veg Options">
+                <div class="menu-text"><a href="veg-menu.html">Veg Options</a></div>
+            </div>
+            <div class="menu-item">
+                <!-- Correct the image path using the static template tag -->
+                <img src="{% static 'images/ad-non-veg.png' %}" alt="Non-Veg Options">
+                <div class="menu-text"><a href="nonveg-menu.html">Non-Veg Options</a></div>
+            </div>
+            <div class="menu-item">
+                <!-- Correct the image path using the static template tag -->
+                <img src="{% static 'images/ad-drinks.png' %}" alt="Drinks">
+                <div class="menu-text"><a href="drink-menu.html">Drinks</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <!-- Ensure proper use of button and link -->
+        <a href="dashboard.html" class="btn">BACK</a>
+    </div>
+</main>
+<script src="js/chart.js"></script>
+{% endblock content %}
