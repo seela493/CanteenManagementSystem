@@ -13,6 +13,11 @@
 <div class="container">
     <h2>Order Bill</h2>
     <p class="order-number">Order #{{order.order_number}}</p>
+    <form action="{% url 'delete_order' order.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="delete-order-btn">Delete Order</button>
+    </form>
+
     {% for order_item in order_items %}
     <div class="item">
         <img src="{{order_item.item.image.url}}" alt="{{order_item.item.name}}">

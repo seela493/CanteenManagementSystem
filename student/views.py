@@ -186,3 +186,32 @@ def order_history(request):
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-date_ordered')
     context = {'orders': orders}
     return render(request, 'student/order.html', context)
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.contrib import messages
+from .models import Order, OrderItem
+
+# Existing view for deleting an entire order
+def delete_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    
+    if request.method == "POST":
+        OrderItem.objects.filter(order=order).delete()
+        order.is_ordered = False
+        order.order_number = ""
+        order.save()
+        messages.success(request, "Order has been deleted successfully.")
+    
+    return redirect(reverse('order'))
+
+# New view for deleting a single item from an order
+def delete_order_item(request, item_id):
+    order_item = get_object_or_404(OrderItem, id=item_id, order__user=request.user)
+
+    if request.method == "POST":
+        order_item.delete()
+        messages.success(request, f"Item {order_item.item.name} has been deleted from your order.")
+
+    return redirect(reverse('order'))  # Redirect to cart or appropriate page

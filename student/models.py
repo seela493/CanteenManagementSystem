@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+import random
+import string
 
 
 class Item(models.Model):
@@ -22,7 +24,7 @@ class Order(models.Model):
     items = models.ManyToManyField('Item', through='OrderItem')
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
-    order_number = models.CharField(max_length=20, unique=True, blank=True)
+    order_number = models.CharField(max_length=4, unique=True, blank=True)
 
     def __str__(self):
         return f"Order {self.order_number} by {self.user.username}"
@@ -34,9 +36,12 @@ class Order(models.Model):
 
     def generate_unique_order_number(self):
         """
-        Generate a unique order number using UUID4 and return it.
+        Generate a unique 4-character order number.
         """
-        return str(uuid.uuid4()).split('-')[-1].upper()
+        while True:
+            order_number = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+            if not Order.objects.filter(order_number=order_number).exists():
+                return order_number
 
     def get_total_price(self):
         total = sum(order_item.item.price * order_item.quantity for order_item in self.orderitem_set.all())

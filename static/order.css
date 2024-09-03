@@ -210,3 +210,16 @@ h2 {
     height: 24px;
     margin: 5px;
 }
+.delete-order-btn {
+    background-color: #dc3545;  /* Red color for delete */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-order-btn:hover {
+    background-color: #c82333; /* Darker red for hover effect */
+}
