@@ -223,3 +223,10 @@ h2 {
 .delete-order-btn:hover {
     background-color: #c82333; /* Darker red for hover effect */
 }
+
+.confirm-order-btn{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

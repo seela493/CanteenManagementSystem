@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse 
 from django.core import serializers
+from django.urls import reverse
+
+
 
 # Home view
 @login_required
@@ -215,3 +218,12 @@ def delete_order_item(request, item_id):
         messages.success(request, f"Item {order_item.item.name} has been deleted from your order.")
 
     return redirect(reverse('order'))  # Redirect to cart or appropriate page
+
+def confirm_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    order.status = 'confirmed'  # Change status to confirmed
+    order.save()
+    
+    messages.success(request, 'Your order is confirmed! Please go to the canteen.')
+    
+    return redirect('order_detail', order_id=order.id)

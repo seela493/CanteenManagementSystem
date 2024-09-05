@@ -43,7 +43,34 @@
         <p>Total:</p>
         <p>Rs.<span id="total-price">{{order.get_total_price}}</span></p>
     </div>
+    <form action="{% url 'confirm_order' order.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="confirm-order-btn" 
+                {% if order.status == 'confirmed' %}
+                    style="background-color: rgb(51, 128, 0) ;"
+                {% else %}
+                    style="background-color: orange;"
+                {% endif %}>
+            {% if order.status == 'confirmed' %}
+                Confirmed
+            {% else %}
+                Confirm Order
+            {% endif %}
+        </button>
+    </form>
 </div>
+{% if messages %}
+    <div class="popup-message">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            document.querySelector('.popup-message').style.display = 'none';
+        }, 3000);  // Hide after 3 seconds
+    </script>
+{% endif %}
 <script src="{% static 'js/order.js' %}"></script>
 
 {% endblock content %}
