@@ -11,6 +11,7 @@ body {
 }
 
 .main-container {
+    max-width: 1450px;
     padding: 0 0 10px 0;
     background-color: #fff;
     border-radius: 50px 50px 0 0;
@@ -77,6 +78,8 @@ button i {
 .site-main {
     display: flex;
     gap: 10px;
+    max-width: 1200px;
+    width: 100%;
 }
 
 .slide {
@@ -122,6 +125,7 @@ ul li a i {
 
 .container {
     display: flex;
+    flex: 3;
     width: 100%;
     background-color: #fff;
     border-radius: 8px;
@@ -129,21 +133,21 @@ ul li a i {
 }
 
 .order-list {
-    width: 40%;
+    width: 100%;
     border-right: 1px solid #d9d9d9;
     padding: 20px;
 }
 
 .tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 150px;
     margin-bottom: 20px;
 }
 
 .tabs button {
     width: 32%;
     padding: 10px;
-    background-color: #f5f5f5;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -156,12 +160,18 @@ ul li a i {
     color: #fff;
 }
 
-.tabs button:hover {
+.tabs .active:hover {
     background-color: #ff6347;
     color: #fff;
 }
 
+.tabs .paid-list {
+    background: #2ad813;
+    color: #fff;
+}
+
 .orders {
+    width: 100%;
     overflow-y: auto;
     height: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -215,14 +225,20 @@ ul li a i {
 }
 
 .order-details-view {
-    width: 50%;
+    flex: 3;
+    width: 80%;
     border: 1px solid #d9d9d9;
     border-radius: 20px;
     padding: 20px;
+    margin-left: 100px;
     display: flex;
-    justify-content: center;
-    flex: 2;
+    position: absolute;
+    left: 50%;
 }
+
+/* .order-summary{
+    width: 100%;
+} */
 
 .order-summary h3 {
     font-size: 24px;
@@ -268,25 +284,21 @@ ul li a i {
     margin-top: 10px;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
+.order-menu .action-buttons {
+    position: absolute;
+    left: 100%;
 }
 
 .action-buttons button {
     width: 48%;
     padding: 5px 10px;
-    background-color: #ff7f50;
+    background-color: #2ad813;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
-}
-
-.action-buttons button:hover {
-    background-color: #ff6347;
 }
 
 .footer {
