@@ -1,5 +1,8 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+
+from student.models import Order
 from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -79,7 +82,31 @@ def canteen_menu(request):
     return render(request, 'canteen/menu.html')
 
 def canteen_order(request):
-    return render(request, 'canteen/order.html')
+    order_status = request.GET.get('order_status', 'ORDER_IN')
+    order_number = request.GET.get('order_number')
+    print(order_number)
+    if(order_status == 'PAID'):
+        orders = Order.objects.filter(is_paid=True).all()
+    else: 
+        orders = Order.objects.filter(is_ordered=True, is_paid=False).all()
+            
+    order_details = None
+    if order_number:
+        try:
+            order_details = Order.objects.select_related('user').prefetch_related('items').get(order_number=order_number)
+        except Order.DoesNotExist:
+            # Handle the case where the order number is invalid
+            order_details = None
+            messages.error(request, "Invalid order number. Please try again.")
+            return redirect('canteen_order')
+        
+    return render(request, 'canteen/order.html', { 'order_status': order_status, 'orders': orders, 'order_details': order_details})
+
+def canteen_order_paid(request, order_number):
+    order = Order.objects.get(order_number=order_number)
+    order.is_paid = True
+    order.save()
+    return redirect('canteen_order')
 
 def canteen_about(request):
     return render(request, 'canteen/about.html')

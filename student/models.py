@@ -24,6 +24,7 @@ class Order(models.Model):
     items = models.ManyToManyField('Item', through='OrderItem')
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
     order_number = models.CharField(max_length=4, unique=True, blank=True)
 
     def __str__(self):

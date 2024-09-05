@@ -8,6 +8,7 @@ urlpatterns = [
     path('canteen_home/', views.canteen_home, name='canteen_home'),
     path('canteen_menu/', views.canteen_menu, name='canteen_menu'),
     path('canteen_order/', views.canteen_order, name='canteen_order'),
+    path('canteen_order/paid/<str:order_number>', views.canteen_order_paid, name='canteen_order_paid'),
     path('canteen_about/', views.canteen_about, name='canteen_about'),
     path('canteen_settings/', views.canteen_settings, name='canteen_settings'),
 ]

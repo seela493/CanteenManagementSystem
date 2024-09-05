@@ -206,6 +206,14 @@ def delete_order(request, order_id):
     
     return redirect(reverse('order'))
 
+def place_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    if request.method == "POST":
+        order.is_ordered = True
+        order.save()
+        messages.success(request, "Order has been placed successfully.")
+    return redirect(reverse('order'))
+
 # New view for deleting a single item from an order
 def delete_order_item(request, item_id):
     order_item = get_object_or_404(OrderItem, id=item_id, order__user=request.user)

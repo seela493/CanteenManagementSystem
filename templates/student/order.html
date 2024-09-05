@@ -13,10 +13,18 @@
 <div class="container">
     <h2>Order Bill</h2>
     <p class="order-number">Order #{{order.order_number}}</p>
-    <form action="{% url 'delete_order' order.id %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="delete-order-btn">Delete Order</button>
-    </form>
+    
+    {% if order.id %}
+        <form action="{% url 'place_order' order.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+        
+        <form action="{% url 'delete_order' order.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="delete-order-btn">Delete Order</button>
+        </form>
+    {% endif %}
 
     {% for order_item in order_items %}
     <div class="item">
