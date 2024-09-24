@@ -1,15 +1,10 @@
 {% extends 'base/canteenbase.html' %}
 {% load static %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'about.css' %}">
+<link rel="stylesheet" href="{% static 'canteen/about.css' %}">
 {% endblock link %}
 
-{% block search %}
-<div class="search-bar">
-    <input type="text" placeholder="What do you want to eat today?">
-    <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
-</div>
-{% endblock search %}
+
 {% block content %}
 <main>
     <div class="main-container">

@@ -259,7 +259,7 @@ button:hover {
 .button_reg:hover,
 .button_log:hover {
     background-color: #fff;
-    color: #FF5100;
+    color: #0066ff;
     cursor: pointer;
 }
 

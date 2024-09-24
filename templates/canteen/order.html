@@ -12,95 +12,76 @@
             <div class="container">
                 <div class="order-list">
                     <div class="tabs">
-                        <button class="active">Order in</button>
-                        <button class="paid-list">Paid</button>
+                        <a href="{% url 'canteen_order' %}?order_status=ORDER_IN" class="active">
+                             Order in
+                        </a>
+                        <a href="{% url 'canteen_order' %}?order_status=PAID" class="paid-list">
+                            Paid
+                        </a>
                     </div>
                     <!-- Add the search bar here -->
                     
                     <div class="orders">
                         <!-- Order list starts here -->
-                         <div class="search-bar">
-                        <input type="text" placeholder="Search bill code..." id="search-input">
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <h3>Order #1</h3>
-                                <p>June 1, 2020, 8:22 AM</p>
+                        <div class="search-bar">
+                            <form action="{% url 'canteen_order' %}" method="GET">
+                                <input name="order_number" type="text" placeholder="Search bill code..." id="search-input">
+                                <button class="search-btn" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                        {% for order in orders %}
+                            <div class="order">
+                                <div class="order-details">
+                                    <a href="{% url 'canteen_order' %}?order_number={{order.order_number}}&order_status={{order_status}}">
+                                        <h3>Order #{{ order.order_number }}</h3>
+                                    </a>
+                                    <p>{{order.date_ordered}}</p>
+                                </div>
+                                <div class="order-price">Rs. {{order.get_total_price}}</div>
                             </div>
-                            <div class="order-price">Rs. 150.00</div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <h3>Order #2</h3>
-                                <p>June 1, 2020, 8:15 AM</p>
-                            </div>
-                            <div class="order-price">Rs. 450.00</div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <h3>Order #3</h3>
-                                <p>June 1, 2020, 7:45 AM</p>
-                            </div>
-                            <div class="order-price">Rs. 300.00</div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <h3>Order #4</h3>
-                                <p>June 1, 2020, 7:25 AM</p>
-                            </div>
-                            <div class="order-price">Rs. 60.00</div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <h3>Order #5</h3>
-                                <p>June 1, 2020, 7:15 AM</p>
-                            </div>
-                            <div class="order-price">Rs. 30.00</div>
-                        </div>
-                        <div class="more-orders">
-                            <button>MORE</button>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 
-                <div class="order-details-view">
-                    <div class="order-summary">
-                        <h3>Order #1</h3>
-                        <p>June 1, 2020, 8:22 AM</p>
-                        <div class="customer-info">
-                            <img src="{% static 'images/alien.png' %}" alt="Customer Image">
-                            <p>Alen Catherine <br> User since 2020</p>
-                        </div>
-                        <div class="order-menu">
-                            <h3>Order Menu</h3>
-                            <div class="menu-item">
-                                <img src="{% static 'images/samosa.png' %}" alt="Samosa">
-                                <p>Samosa <span>x1</span></p>
-                                <p>+Rs. 25</p>
+                {% if order_details %}
+                    <div class="order-details-view">
+                        <div class="order-summary">
+                            <h3>Order #{{ order_details.order_number }}</h3>
+                            <p>{{order_details.date_ordered}}</p>
+                            <div class="customer-info">
+                                <img src="{% static 'images/alien.png' %}" alt="Customer Image">
+                                <p>{{order_details.user.first_name}} {{order_details.user.last_name}}<br> User since {{order_details.user.date_joined}}</p>
                             </div>
-                            <div class="menu-item">
-                                <img src="{% static 'images/paratha.png' %}" alt="Aloo Paratha">
-                                <p>Aloo Paratha <span>x1</span></p>
-                                <p>+Rs. 50</p>
+                            <div class="order-menu">
+                                <h3>Order Menu</h3>
+                                {% for order_item in order_details.items.all %}
+                                    <div class="menu-item">
+                                  
+                                        <img height="60px" src="{{order_item.image.url }}" alt="{{order_item.name}}">
+                                        <p>{{order_item.name}} <span>x1</span></p>
+                                        <p>+Rs. {{order_item.price}}</p>
+                                    </div>
+                                {% endfor %}
+                                <div class="total-price">
+                                    <p>Total</p>
+                                    <p>Rs. {{order_details.get_total_price}}</p>
+                                </div>
                             </div>
-                            <div class="menu-item">
-                                <img src="{% static 'images/paneer.png' %}" alt="Matar Paneer Curry">
-                                <p>Matar Paneer Curry <span>x1</span></p>
-                                <p>+Rs. 75</p>
+                            {% if order_details.is_paid %}
+                            <p>The order has been already paid for!</p>
+                            {% else %}
+                            <div class="action-buttons">
+                                <a href="{% url 'canteen_order_paid' order_details.order_number %} ">
+                                    <button class="prepared-btn">Paid</button>
+                                </a>
                             </div>
-                            <div class="total-price">
-                                <p>Total</p>
-                                <p>Rs. 150</p>
-                            </div>
-                        </div>
-                        <div class="action-buttons">
-                            <button class="prepared-btn">Paid</button>
+                            {% endif %}
+                     
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -13,17 +13,17 @@
             <div class="menu-item">
                 <!-- Correct the image path using the static template tag -->
                 <img src="{% static 'images/ad-veg.png' %}" alt="Veg Options">
-                <div class="menu-text"><a href="veg-menu.html">Veg Options</a></div>
+                <div class="menu-text"><a href="{% url 'canteen_veg' %}">Veg Options</a></div>
             </div>
             <div class="menu-item">
                 <!-- Correct the image path using the static template tag -->
                 <img src="{% static 'images/ad-non-veg.png' %}" alt="Non-Veg Options">
-                <div class="menu-text"><a href="nonveg-menu.html">Non-Veg Options</a></div>
+                <div class="menu-text"><a href="{% url 'canteen_nonveg' %}">Non-Veg Options</a></div>
             </div>
             <div class="menu-item">
                 <!-- Correct the image path using the static template tag -->
                 <img src="{% static 'images/ad-drinks.png' %}" alt="Drinks">
-                <div class="menu-text"><a href="drink-menu.html">Drinks</a></div>
+                <div class="menu-text"><a href="{% url 'canteen_drinks' %}">Drinks</a></div>
             </div>
         </div>
     </div>

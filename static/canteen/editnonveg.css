@@ -30,15 +30,13 @@ body {
 
 .search-bar {
     position: relative;
+    width: 25%;
+    border-radius: 10px;
+    border: none;
 }
 
 .search-bar input {
     font-family: 'Habibi', sans-serif;
-    width: 400px;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border: none;
 }
 
 .search-btn {
@@ -120,76 +118,120 @@ ul li a i {
     width: 40px;
 }
 
-.menu-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    margin-left: 65px;
-    gap:30px;
-
-}
-
-.menu-item {
-    position: relative;
-    width: auto;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.menu-item img {
+.container {
     width: 100%;
-    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.edit-item-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image-section img {
+    width: auto;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.menu-item:hover img {
-    transform: scale(1.1);
-    cursor: pointer;
+.image-actions {
+    display: flex;
+    gap: 10%;
+    margin-left: 30px;
+    width: 40%;
 }
 
-.menu-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.menu-text a {
-    text-decoration: none;
+.delete-btn, .remove-btn {
+    background-color: #F2780D;
     color: #fff;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover, .remove-btn:hover {
+    background-color: #e43516;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
     font-size: 16px;
     font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
 }
 
-.menu-text a:hover {
-    color: #F2780D;
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #686868;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }
 
-.button {
+.buttons {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    padding: 10px 20px;
 }
 
-.btn {
-    background: #F2780D;
-    padding: 5px 20px;
-    margin-right: 40px;
-    margin-top: 25px;
+.back-btn, .save-btn {
+    background-color: #ED8B35;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.btn a {
+.back-btn {
+    border: 1px solid #ED8B35;
+    background: #fff;
+}
+
+.back-btn a {
+    text-decoration: none;
+    color: #ED8B35;
+}
+
+.save-btn a {
     text-decoration: none;
     color: #fff;
 }
 
-.btn a:hover {
-    color: #d8c3c3;
+.back-btn:hover, .save-btn:hover {
+    background-color: #ff6347;
+}
+
+.back-btn a:hover, .save-btn a:hover {
+    color: #424141;
 }
 
 .footer {

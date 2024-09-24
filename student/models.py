@@ -20,16 +20,12 @@ class Item(models.Model):
         return self.name
 
 class Order(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('confirmed', 'Confirmed'),
-    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     items = models.ManyToManyField('Item', through='OrderItem')
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
     order_number = models.CharField(max_length=4, unique=True, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
         return f"Order {self.order_number} by {self.user.username}"
@@ -64,4 +60,3 @@ class OrderItem(models.Model):
     
     def total(self):
         return self.item.price * self.quantity
-

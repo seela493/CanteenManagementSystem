@@ -406,12 +406,14 @@ h2 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    
 }
 
 .order-row .col {
     background: #F4EEEE;
     margin: 0 80px;
     border-radius: 20px;
+
 }
 
 .order-row .col img {
@@ -432,113 +434,6 @@ h2 {
 .order-row .time {
     color: #A098AE;
 
-}
-
-.popular-dishes {
-    padding: 30px 0;
-    text-align: center;
-}
-
-.dishes-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.dish-card {
-    background: #F4EEEE;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    padding: 20px;
-}
-
-.discount-badge {
-    background-color: #ff5252;
-    color: #fff;
-    font-size: 14px;
-    padding: 5px 15px;
-    position: absolute;
-    top: 20px;
-    left: 0;
-    border-radius: 2px;
-}
-
-.dish-details {
-    padding: 15px;
-    text-align: left;
-}
-
-.rating {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.star {
-    font-size: 24px;
-    color: #908d8d;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.star:hover,
-.star.selected {
-    color: #ff9800;
-}
-
-.dish-details h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.price {
-    font-size: 16px;
-    font-weight: 600;
-    color: #ED8B35;
-}
-
-.add-to-menu {
-    background-color: #ffb400;
-    border: none;
-    padding: 5px 8px;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 20px;
-    float: right;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.add-to-menu:hover {
-    background-color: #ff9800;
-    border: none;
-}
-
-.edit-content {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.edit {
-    border: none;
-    background: #fff;
-    margin: 0 30px 30px 0;
-    padding: 5px;
-}
-
-.edit a {
-    color: #ED8B35;
-    text-decoration: none;
-    font-size: 20px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.edit:hover {
-    text-decoration: underline;
-    border: 1px solid #ED8B35;
-    border-radius: 10px;
 }
 
 .footer {

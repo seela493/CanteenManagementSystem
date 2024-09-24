@@ -1,0 +1,46 @@
+{% extends 'base/canteenbase.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'canteen/home.css' %}">
+{% endblock link %}
+
+{% block content %}
+
+<body>
+    <main>
+        <div class="main-container">
+            <div class="site-main">
+                <div class="container">
+                    <div class="title">
+                        <h2>Drinks Options</h2>
+                    </div>
+
+                    <div class="edit-item-form">
+                        <div class="image-section">
+                            <img src="{% static 'images/mango.png' %}" alt="Drink">
+                            <div class="image-actions">
+                                <button class="delete-btn">Delete Picture</button>
+                                <button class="remove-btn">Remove Photo</button>
+                            </div>
+                        </div>
+                        <form>
+                            <label for="product-name">Product Name:</label>
+                            <input type="text" id="product-name" value="Mango Juice">
+
+                            <label for="price">Price:</label>
+                            <input type="text" id="price" value="Rs. 60">
+
+                            <label for="description">Description:</label>
+                            <textarea id="description" rows="4" placeholder="Enter description..."></textarea>
+                        </form>
+                    </div>
+                    <div class="buttons">
+                        <button class="back-btn"><a href="menu.html">BACK</a></button>
+                        <button type="submit" class="save-btn"><a href="#">SAVE</a></button>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="js/chart.js"></script>
+</body>
+{% endblock content %}

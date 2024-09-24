@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block link %}
-    {{ block.super }}
-    <link rel="icon" type="image/svg" href="images/tab-logo.svg">
-    <link rel="stylesheet" href="{% static 'menu.css' %}">
+{{ block.super }}
+<link rel="icon" type="image/svg" href="images/tab-logo.svg">
+<link rel="stylesheet" href="{% static 'menu.css' %}">
 {% endblock link %}
 
 {% block search %}
@@ -24,133 +24,135 @@
 {% block content %}
 <main>
 
-<div class="main-container">
-    <div class="content">
-        <div id="cart-popup" class="cart-count">
-            <h4>Order Cart</h4>
-            <p>Your order number is: {{order.order_number}}</p>
+    <div class="main-container">
+        <div class="content">
+            <div id="cart-popup" class="cart-count">
+                <h4>Order Cart</h4>
+                <p>Your order number is: {{order.order_number}}</p>
 
-            <table id="cart-items">
-                <thead>
-                    <tr>
-                        <th>Food</th>
-                        <th>#</th>
-                        <th>Price(Rs.)</th>
-                        <th>Total(Rs.)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for order_item in order_items %}
-                    <tr>
-                        <td>{{order_item.item.name}}</td>
-                        <td>{{order_item.quantity}}</td>
-                        <td>{{order_item.item.price}}</td>
-                        <td>{{order_item.total}}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <p>Total(Rs.) <span id="cart-total">{{order.get_total_price}}</span></p>
-            <a class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></a>
-        </div>
-    <div class="blnc-container">
-        <div class="topic">
-            <span>Your Balance</span>
-            <span>Your RFID</span>
-        </div>
-        <div class="detail-container">
-            <div class="balance-container">
-                <p>Balance <br> Rs. <strong>XXXXX</strong></p>
-                <button><a href="form.html" class="blnc">Add Balance</a></button>
+                <table id="cart-items">
+                    <thead>
+                        <tr>
+                            <th>Food</th>
+                            <th>#</th>
+                            <th>Price(Rs.)</th>
+                            <th>Total(Rs.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order_item in order_items %}
+                        <tr>
+                            <td>{{order_item.item.name}}</td>
+                            <td>{{order_item.quantity}}</td>
+                            <td>{{order_item.item.price}}</td>
+                            <td>{{order_item.total}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>Total(Rs.) <span id="cart-total">{{order.get_total_price}}</span></p>
+                <a class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></a>
             </div>
-            <div class="rfid-container">
-                <p>ID Number <br> XXXXXXXXXXX</p>
-                <button><a href="setting.html" class="id">Add Details</a></button>
-            </div>
-        </div>
-    </div>
-    <div class="promo">
-        <img src="{% static 'images/offer.png' %}" alt="promo image">
-    </div>
-
-
-<section class="veg">
-    <h2>Veg Options</h2>
-    <div class="row">
-        {% for item in items %}
-            {% if item.category == 'veg' %}
-            <div class="veg-options">
-                <img src="{{ item.image.url }}" alt="{{ Puri.name }}">
-                <p>{{ item.name }}</p>
-                <div class="icon">
-                    <span>Rs.{{ item.price }}/per plate</span>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
-                            CART</button>
-                    </form>
+            <div class="blnc-container">
+                <div class="topic">
+                    <span>Your Balance</span>
+                    <span>Your RFID</span>
                 </div>
-            </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-</section>
-
-<section class="non-veg">
-    <h2>Non-Veg Options</h2>
-    <div class="row">
-        {% for item in items %}
-            {% if item.category == 'non-veg' %}
-            <div class="non-veg-options">
-                <img src="{{ item.image.url }}" alt="{{ item.name }}">
-                <p>{{ item.name }}</p>
-                <div class="icon">
-                    <span>Rs.{{ item.price }}/per plate</span>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
-                            CART</button>
-                    </form>
-                </div>
-            </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-</section>
-
-<section class="drinks">
-    <h2>Drinks</h2>
-    <div class="drinks-category">
-        <div class="drink-topic">
-            <h3>Hot Drinks</h3>
-            <h3>Cold Drinks</h3>
-        </div>
-        <div class="drinks-row">
-            {% for item in items %}
-                {% if item.category == 'drink' %}
-                <div class="drink-item">
-                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
-                    <div class="drink-info">
-                        <h4>{{ item.name }}</h4>
-                        <p>Rs.{{ item.price }}</p>
+                <div class="detail-container">
+                    <div class="balance-container">
+                        <p>Balance <br> Rs. <strong>XXXXX</strong></p>
+                        <button><a href="form.html" class="blnc">Add Balance</a></button>
                     </div>
-                    <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
-                            CART</button>
-                    </form>
+                    <div class="rfid-container">
+                        <p>ID Number <br> XXXXXXXXXXX</p>
+                        <button><a href="setting.html" class="id">Add Details</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="promo">
+                <img src="{% static 'images/offer.png' %}" alt="promo image">
+            </div>
+        </div>
+
+        <section class="veg">
+            <h2>Veg Options</h2>
+            <div class="row">
+                {% for item in items %}
+                {% if item.category == 'veg' %}
+                <div class="veg-options">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                    <p>{{ item.name }}</p>
+                    <div class="icon">
+                        <span>Rs.{{ item.price }}/per plate</span>
+                        <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                            {% csrf_token %}
+                            <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
+                                CART</button>
+                        </form>
+                    </div>
                 </div>
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="non-veg">
+            <h2>Non-Veg Options</h2>
+            <div class="row">
+                {% for item in items %}
+                {% if item.category == 'non-veg' %}
+                <div class="non-veg-options">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                    <p>{{ item.name }}</p>
+                    <div class="icon">
+                        <span>Rs.{{ item.price }}/per plate</span>
+                        <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                            {% csrf_token %}
+                            <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO
+                                CART</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="drinks">
+            <h2>Drinks</h2>
+            <div class="drinks-category">
+                <div class="drink-topic">
+                    <h3>Hot Drinks</h3>
+                    <h3>Cold Drinks</h3>
+                </div>
+                <div class="drinks-row">
+                    <div class="drinks-grid">
+                        {% for item in items %}
+                        {% if item.category == 'drink' %}
+                        <div class="drink-item">
+                            <div class="drink-image">
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                            </div>
+                            <div class="drink-content">
+                                <h4>{{ item.name }}</h4>
+                                <p>Rs.{{ item.price }}</p>
+                                <form method="post" action="{% url 'add_to_cart' item.id %}" class="add-to-cart-form">
+                                    {% csrf_token %}
+                                    <button type="submit" id="cartBtn" class="add-to-cart-btn">ADD TO CART</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+        </section>
+
+        <div class="btn">
+            <button class="cart"><a href="{% url 'order' %}">GO TO CART</a></button>
         </div>
     </div>
-</section>
-
-<div class="btn">
-    <button class="cart"><a href='{% url 'order' %}'>GO TO CART</a></button>
-</div>
-</div>
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
 </main>
 {% endblock content %}

@@ -1,15 +1,23 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block link %}
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+<link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock link %}
 
 {% block search %}
 <div class="search-bar">
-    <input type="text" placeholder="What do you want to eat today?">
-    <i class="search-icon"><img src="{% static 'images/search.svg' %}" alt="search"></i>
+    <input type="text" placeholder="Search...">
+</div>
+<div class="profile-content">
+    <div class="add-to-cart">
+        <a class="cart" href="#" onclick="toggleCartPopup()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">{{order_items.count}}</span>
+        </a>
+    </div>
 </div>
 {% endblock search %}
+
 {% block content %}
 <main class="content">
     <div class="banner">
@@ -21,8 +29,7 @@
     <div class="balance">
         <span>Your Balance</span>
         <div class="balance-container">
-            <p>Balance <br> Rs. <strong>XXXXX</strong></p>
-            <a href="form.html" class="blnc">Add Balance</a>
+            <p>Your Balance <br> Rs. <strong>XXXXX</strong></p>
         </div>
     </div>
     <div class="rfid">
@@ -35,47 +42,47 @@
 </aside>
 </div>
 <div class="section-container">
-<section class="category-section">
-    <h2>Category</h2>
-    <div class="categories">
-        <div class="category-item">
-            <img src="{% static 'images/veg.jpg' %}" alt="Veg Options">
-            <button>Veg Options</button>
+    <section class="category-section">
+        <h2>Category</h2>
+        <div class="categories">
+            <div class="category-item">
+                <img src="{% static 'images/veg.jpg' %}" alt="Veg Options">
+                <button>Veg Options</button>
+            </div>
+            <div class="category-item">
+                <img src="{% static 'images/nonveg.jpg' %}" alt="Non-Veg Options">
+                <button>Non-Veg Options</button>
+            </div>
+            <div class="category-item">
+                <img src="{% static 'images/drink.jpg' %}" alt="Drinks">
+                <button>Drinks</button>
+            </div>
         </div>
-        <div class="category-item">
-            <img src="{% static 'images/nonveg.jpg' %}" alt="Non-Veg Options">
-            <button>Non-Veg Options</button>
+    </section>
+    <section class="popular-dishes-section">
+        <h2>Popular Dishes</h2>
+        <div class="dishes">
+            <div class="dish-item">
+                <img src="{% static 'images/momo.jpg' %}" alt="Buff Jhol Momo">
+                <p>Buff Jhol Momo</p>
+                <span>Rs. 150/per plate</span>
+                <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
+            </div>
+            <div class="dish-item">
+                <img src="{% static 'images/samosa.jpg' %}" alt="Samosa">
+                <p>Samosa</p>
+                <span>Rs. 25/per piece</span>
+                <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
+            </div>
+            <div class="dish-item">
+                <img src="{% static 'images/chowmein.jpg' %}" alt="Chicken Chowmein">
+                <p>Chicken Chowmein</p>
+                <span>Rs. 120/per plate</span>
+                <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
+            </div>
         </div>
-        <div class="category-item">
-            <img src="{% static 'images/drink.jpg' %}" alt="Drinks">
-            <button>Drinks</button>
-        </div>
-    </div>
-</section>
-<section class="popular-dishes-section">
-    <h2>Popular Dishes</h2>
-    <div class="dishes">
-        <div class="dish-item">
-            <img src="{% static 'images/momo.jpg' %}" alt="Buff Jhol Momo">
-            <p>Buff Jhol Momo</p>
-            <span>Rs. 150/per plate</span>
-            <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
-        </div>
-        <div class="dish-item">
-            <img src="{% static 'images/samosa.jpg' %}" alt="Samosa">
-            <p>Samosa</p>
-            <span>Rs. 25/per piece</span>
-            <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
-        </div>
-        <div class="dish-item">
-            <img src="{% static 'images/chowmein.jpg' %}" alt="Chicken Chowmein">
-            <p>Chicken Chowmein</p>
-            <span>Rs. 120/per plate</span>
-            <i class="heart"><img src="{% static 'images/heart.svg' %}" alt="heart"></i>
-        </div>
-    </div>
-    <a href="{% url 'menu' %}" class="view-more">View More</a>
-    <button class="order-now"><a href="{% url 'menu' %}">Order Now</a></button>
-</section>
+        <a href="{% url 'menu' %}" class="view-more">View More</a>
+        <button class="order-now"><a href="{% url 'menu' %}">Order Now</a></button>
+    </section>
 </div>
 {% endblock content %}

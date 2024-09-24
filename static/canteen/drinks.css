@@ -8,6 +8,7 @@
 body {
     background-color: #F2780D;
     border-radius: 40px;
+    overflow: hidden;
 }
 
 .main-container {
@@ -81,7 +82,7 @@ button i {
 
 .slide {
     width: 13%;
-    height: 450px;
+    height: 400px;
     background: #fff;
     border: 2px solid #d9d9d9;
     border-radius: 40px 0 0 0;
@@ -120,76 +121,122 @@ ul li a i {
     width: 40px;
 }
 
-.menu-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    margin-left: 65px;
-    gap:30px;
-
-}
-
-.menu-item {
-    position: relative;
-    width: auto;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.menu-item img {
+.container {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.menu-item:hover img {
-    transform: scale(1.1);
-    cursor: pointer;
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
 }
 
-.menu-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+h2 {
+    font-size: 24px;
 }
 
-.menu-text a {
+.hot-drinks {
+    background: #fff;
+    border: 1px solid #F2780D;
+    padding: 5px 20px;
+    border-radius: 40px;
+}
+
+.hot-drinks a {
     text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-}
-
-.menu-text a:hover {
     color: #F2780D;
 }
 
-.button {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px;
-}
-
-.btn {
+.cold-drinks {
     background: #F2780D;
+    border: none;
     padding: 5px 20px;
-    margin-right: 40px;
-    margin-top: 25px;
+    border-radius: 40px;
 }
 
-.btn a {
+.cold-drinks a {
     text-decoration: none;
     color: #fff;
 }
 
-.btn a:hover {
-    color: #d8c3c3;
+.cold-drinks:hover, .hot-drinks:hover {
+    background: #ff6347;
+}
+
+.categories a:hover {
+    color: #424141;
+}
+
+.menu-table {
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.menu-table th, .menu-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-table img {
+    width: 40%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.menu-table th {
+    background-color: #f4eeee;
+    font-weight: 500;
+}
+
+td i {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.back-btn, .save-btn {
+    background-color: #ED8B35;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-btn {
+    border: 1px solid #ED8B35;
+    background: #fff;
+}
+
+.back-btn a {
+    text-decoration: none;
+    color: #ED8B35;
+}
+
+.save-btn a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.back-btn:hover, .save-btn:hover {
+    background-color: #ff6347;
+}
+
+.back-btn a:hover, .save-btn a:hover {
+    color: #424141;
 }
 
 .footer {

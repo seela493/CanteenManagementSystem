@@ -108,5 +108,48 @@ class rfidform(forms.Form):
         widget=forms.DateInput(attrs={'type': 'date'})
     )
     
+# canteen/forms.py
+from django import forms
+from .models import MenuItem
 
-    
+class MenuItemForm(forms.ModelForm):
+    class Meta:
+        model = MenuItem
+        fields = ['name', 'price', 'image']
+        xclude = ['category']  # Category is set programmatically, not by the user
+
+    name = forms.CharField(
+        label='Product Name',
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter product name',
+            'id': 'product-name'
+        })
+    )
+
+    price = forms.DecimalField(
+        label='Price',
+        max_digits=6,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter price',
+            'id': 'price'
+        })
+    )
+
+    image = forms.ImageField(
+        label='Product Image',
+        required=False,
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'form-control-file',
+            'id': 'image'
+        })
+    )
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price <= 0:
+            raise forms.ValidationError("Price must be greater than 0")
+        return price

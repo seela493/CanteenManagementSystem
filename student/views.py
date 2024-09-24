@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse 
 from django.core import serializers
-from django.urls import reverse
 
 
 
@@ -209,6 +208,14 @@ def delete_order(request, order_id):
     
     return redirect(reverse('order'))
 
+def place_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    if request.method == "POST":
+        order.is_ordered = True
+        order.save()
+        messages.success(request, "Order has been placed successfully.")
+    return redirect(reverse('order'))
+
 # New view for deleting a single item from an order
 def delete_order_item(request, item_id):
     order_item = get_object_or_404(OrderItem, id=item_id, order__user=request.user)
@@ -219,11 +226,3 @@ def delete_order_item(request, item_id):
 
     return redirect(reverse('order'))  # Redirect to cart or appropriate page
 
-def confirm_order(request, order_id):
-    order = get_object_or_404(Order, id=order_id)
-    order.status = 'confirmed'  # Change status to confirmed
-    order.save()
-    
-    messages.success(request, 'Your order is confirmed! Please go to the canteen.')
-    
-    return redirect('order_detail', order_id=order.id)

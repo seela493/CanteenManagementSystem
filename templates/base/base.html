@@ -3,20 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Vojan Express</title>
-    <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
-    <link rel="icon" type="image/png" href="image/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Habibi,wght@0,400;1,400;" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Habibi:wght@400&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril Fatface:wght@400&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Habibi:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/svg" href="images/tab-logo.svg">
-    
     {% block link %}{% endblock link %}
 </head>
 
@@ -43,7 +40,7 @@
                         <li><a href="{% url 'home' %}"><i class="fas fa-th-large"></i> Dashboard</a></li>
                         <li><a href="{% url 'menu' %}"><i class="fas fa-book"></i> Menu</a></li>
                         <li><a href="{% url 'order' %}"><i class="fas fa-receipt"></i> Order</a></li>
-                        <li><a href="{% url 'about' %}"><i class="fa-solid fa-info-circle"></i> About Us</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
                         <li><a href="{% url 'setting' %}"><i class="fas fa-cog"></i> Settings</a></li>
                     </ul>
                 </aside>
@@ -52,6 +49,7 @@
             </div>
         </div>
     </main>
+    
     {% block footer %}
     <footer class="footer">
         <p>Get In Touch</p>
@@ -62,6 +60,6 @@
         </div>
         <p>&copy; VojanExpress. All Rights Reserved 2024. Licensing</p>
     </footer>
-    {% endblock footer %}
+    {% endblock footer %}   
 </body>
 </html>

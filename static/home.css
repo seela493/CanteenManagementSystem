@@ -25,29 +25,130 @@ body {
     color: #fff;
 }
 
+
 .logo img {
     width: 85%;
 }
 
-.search-bar input {
-    width: 400px;
+#cart-popup {
+    width: 21%;
     padding: 10px;
+    background-color: #fff;
     border-radius: 10px;
-    padding: 16px 0px 16px 70px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    right: 1%;
+    top: 20%;
+    z-index: 1000;
+}
+
+.cart-popup:active {
+    display: block;
+}
+
+#cart-popup h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+#cart-items {
+    width: 100%;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+
+#cart-popup p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#cart-total {
+    font-family: 'poppins', sans-serif;
+    font-weight: 12px;
+    color: #e74c3c;
+}
+
+#cart-items th, #cart-items td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #053d19;
+}
+
+#cart-items th {
+    background-color: #6af878;
+}
+
+#cart-items td {
+    border-bottom: 1px solid #ff5f5f;
+}
+
+.cart-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #999;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart-close:hover {
+    color: #e74c3c;
+}
+
+
+.search-bar {
+    position: relative;
+    left:15%;
+}
+
+.search-bar input {
+    width: 150%;
+    padding: 10px 35px;
+    border-radius: 10px;
     background-color: #fff;
     border: none;
-    position: relative;
 }
 
-.search-icon img {
-    width: 65%;
-    position: static;
-}
-
-.search-icon {
+.search-bar i {
     position: absolute;
-    top: 4.5%;
-    left: 37%;
+    top: 10px;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+}
+
+.profile-content {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    left: 25%;
+}
+
+.profile-content .add-to-cart {
+    position: absolute;
+    left: 0;
+}
+
+.add-to-cart a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ED8B35;
+    background: #fff;
+    padding: 5px;
+    border-radius: 20%;
+}
+
+.cart-count {
+    font-family: 'poppins', sans-serif;
+    font-size: 12px;
 }
 
 .profile {
