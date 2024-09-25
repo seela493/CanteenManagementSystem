@@ -8,13 +8,38 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse 
 from django.core import serializers
+from firebase_admin import db
+import pyrebase
 
+config = {
+    "apiKey": "AIzaSyAkvuzmGmXX0XezhSeOqltGKAVfwHHo5M4",
+    "authDomain": "newupdatedcanteen.firebaseapp.com",
+    "databaseURL": "https://newupdatedcanteen-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "projectId": "newupdatedcanteen",
+    "storageBucket": "newupdatedcanteen.appspot.com",
+    "messagingSenderId": "333329487780",
+    "appId": "1:333329487780:web:bd5d1e17021470e8dc9331",
+    "measurementId": "G-R6490XPPFG"
+}
+
+firebase = pyrebase.initialize_app(config)
+database = firebase.database()
 
 
 # Home view
 @login_required
 def home(request):
+    user = database.child('users').child('36395E32')
+    user_id= user.child('user_id').get().val()
+    balance = user.child('balance').get().val()
+    
+    context = {
+        'balance': balance,
+        'user_id': user_id,
+    }
+    
     return render(request, 'student/home.html')
+
 
 # Login view
 def login_view(request):

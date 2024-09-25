@@ -146,13 +146,14 @@ ul li a i {
 }
 
 .tabs button {
-    width: 32%;
-    padding: 10px;
+    width: 37%;
+    padding: 25%;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    
 }
 
 .tabs .active {

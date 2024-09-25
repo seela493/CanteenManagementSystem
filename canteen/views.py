@@ -10,9 +10,12 @@ from .forms import MenuItemForm
 
 # Home view
 def canteen_home(request):
-    return render(request, 'canteen/home.html')
+    
+    return render(request, 'canteen/home.html' )
 
-# Login view
+
+
+# Login viewy
 def canteen_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
