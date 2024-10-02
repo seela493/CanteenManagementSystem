@@ -29,27 +29,31 @@ body {
     width: 85%;
 }
 
-.search-bar input {
-    width: 400px;
-    padding: 10px;
-    border-radius: 10px;
-    padding: 16px 0px 16px 70px;
-    background-color: #fff;
-    border: none;
+.search-bar {
     position: relative;
 }
 
-.search-icon img {
-    width: 65%;
-    position: static;
+.search-bar input {
+    font-family: 'Habibi', sans-serif;
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: none;
 }
 
-.search-icon {
+.search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button i {
     position: absolute;
-    top: 4.5%;
-    left: 37%;
+    top: 15px;
+    right: 20px;
 }
-
 .profile {
     display: flex;
     align-items: center;
