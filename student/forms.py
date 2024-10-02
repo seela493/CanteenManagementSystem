@@ -1,16 +1,24 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
+from .models import Profile
+
 
 
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter your username'})
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Enter your username',
+            'autocomplete': 'off'  # Disable autofill
+        })
     )
     password = forms.CharField(
         max_length=50,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Password'})
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Enter your Password',
+            'autocomplete': 'new-password'  # Prevent password autofill
+        })
     )
 
 class RegistrationForm(forms.Form):
@@ -20,13 +28,19 @@ class RegistrationForm(forms.Form):
     )
     username = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter your username'})
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Enter your username',
+            'autocomplete': 'off'  # Disable autofill
+        })
     )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'})
     )
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password'})
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Password',
+            'autocomplete': 'new-password'  # Prevent password autofill
+        })
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password'})
@@ -110,4 +124,14 @@ class rfidform(forms.Form):
     )
     
 
-    
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['phone', 'location', 'country', 'profile_photo']  # Include other fields as necessary
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+        
+        

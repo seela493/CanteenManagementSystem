@@ -29,13 +29,13 @@
     <div class="balance">
         <span>Your Balance</span>
         <div class="balance-container">
-            <p>Your Balance <br> Rs. <strong>{{ balance }}</strong></p>
+            <p>Your Balance <br> Rs. <strong>{{ user_rfid.balance }}</strong></p>
         </div>
     </div>
     <div class="rfid">
         <span>Your RFID</span>
         <div class="rfid-container">
-            <p>ID Number <br>{{ user_id }}</p>
+            <p>ID Number <br>{{ user_rfid.rfid }}</p>
             <!-- <a href="{% url 'rfidform' %}" class="id">Apply RFID</a> -->
         </div>
     </div>
@@ -85,11 +85,11 @@
         <button class="order-now"><a href="{% url 'menu' %}">Order Now</a></button>
     </section>
 </div>
-<script type="module">
+<!-- <script type="module">
     // Import the functions you need from the SDKs
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
     import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
-  
+
     // Your web app's Firebase configuration
     const firebaseConfig = {
         "apiKey": "AIzaSyAkvuzmGmXX0XezhSeOqltGKAVfwHHo5M4",
@@ -101,24 +101,27 @@
         "appId": "1:333329487780:web:bd5d1e17021470e8dc9331",
         "measurementId": "G-R6490XPPFG"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-  
+
     // Reference to a specific user's balance and RFID (based on user ID)
-    const userId = '36395E32';  // Replace with dynamic userID when necessary
+    const user_id = user_rfid;  // Replace with dynamic userID when necessary
     const userRef = ref(database, 'users/' + userId);
-  
+
     // Listen for changes in the balance and other data
     onValue(userRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        // Update the HTML with balance and user ID
-        document.querySelector('.balance-container strong').innerText = data.balance;
-        document.querySelector('.rfid-container').innerHTML = `ID Number <br>${userId}`;
-      }
+        const data = snapshot.val();
+        if (data) {
+            // Update the HTML with balance and user ID
+            document.querySelector('.balance-container strong').innerText = data.balance;
+            document.querySelector('.rfid-container').innerHTML = `ID Number <br>${user_id}`;
+        }
     });
-  </script>
-  
+</script> -->
+
+<!-- Include your custom JS -->
+
+
 {% endblock content %}

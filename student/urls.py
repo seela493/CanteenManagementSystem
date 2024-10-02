@@ -6,7 +6,6 @@ from django.conf.urls.static import static
  
 
 urlpatterns = [
-    path('', views.login_view, name = 'login'),
     path('login/',views.login_view, name= 'login'),
     path('register/', views.register_view, name = 'register'),
     path('logout/', views.logout_view, name = 'logout'),
@@ -22,4 +21,5 @@ urlpatterns = [
     path('place_order/', views.place_order, name='place_order'),
     path('delete-order/<int:order_id>/', views.delete_order, name='delete_order'),
     path('place-order/<int:order_id>/', views.place_order, name='place_order'),
+    # path('create-order/', views.create_order, name='create_order'),
 ]

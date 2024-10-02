@@ -1,0 +1,114 @@
+/* Reset some default styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Habibi', sans-serif; /* Use your selected font */
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #F2780D; /* Light background for contrast */
+}
+.logo-container {
+    margin-bottom: 30px; /* Space below the logo */
+}
+
+.logo {
+    width: 150px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.start-container {
+    display: flex;
+    justify-content: space-around; /* Space between user and admin sections */
+    width: 80%;
+    max-width: 800px; /* Maximum width */
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #ffffff; /* White background for the container */
+    opacity: 0; /* Start with opacity for fade-in */
+    animation: fadeIn 1s forwards; /* Fade-in animation */
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* End opacity */
+    }
+}
+
+.user-container, .admin-container {
+    flex: 1; /* Equal space for user and admin */
+    text-align: center; /* Center align content */
+    padding: 20px;
+    position: relative; /* For button effect positioning */
+}
+
+.user-container img, .admin-container img {
+    width: 150px; /* Fixed width for images */
+    height: 150px; /* Fixed height for images */
+    margin-bottom: 15px; /* Spacing below the image */
+    transition: transform 0.3s ease; /* Smooth transition for image scaling */
+}
+
+/* Image hover effect */
+.user-container img:hover, .admin-container img:hover {
+    transform: scale(1.1); /* Scale image up on hover */
+}
+
+/* Button styles */
+.text {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    background-color: #008080; /* Primary button color */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners for buttons */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effects */
+    position: relative; /* Position for shadow effect */
+}
+
+/* Hover effects with animation */
+.text:hover {
+    background-color: #9370DB; /* Darker blue on hover */
+    transform: translateY(-5px) scale(1.05); /* Slight upward movement and scaling */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    animation: bounce 0.3s, shadowPulse 0.6s; /* Bounce and shadow pulse effects */
+}
+
+/* Keyframes for bounce effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Initial and final position */
+    }
+    50% {
+        transform: translateY(-5px); /* Bounce up */
+    }
+}
+
+/* Keyframes for shadow pulse effect */
+@keyframes shadowPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Original shadow */
+    }
+    50% {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .start-container {
+        flex-direction: column; /* Stack user and admin on smaller screens */
+    }
+
+    .user-container, .admin-container {
+        width: 100%; /* Full width for mobile */
+        margin-bottom: 20px; /* Space between stacked elements */
+    }
+}

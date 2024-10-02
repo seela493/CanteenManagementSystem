@@ -60,11 +60,11 @@
                 </div>
                 <div class="detail-container">
                     <div class="balance-container">
-                        <p>Balance <br> Rs. <strong>XXXXX</strong></p>
+                        <p>Balance <br> Rs. <strong>{{ user_rfid.balance }}</strong></p>
                         <button><a href="form.html" class="blnc">Add Balance</a></button>
                     </div>
                     <div class="rfid-container">
-                        <p>ID Number <br> XXXXXXXXXXX</p>
+                        <p>ID Number <br>{{ user_rfid.rfid }}</p>
                         <button><a href="setting.html" class="id">Add Details</a></button>
                     </div>
                 </div>
@@ -152,7 +152,43 @@
             <button class="cart"><a href="{% url 'order' %}">GO TO CART</a></button>
         </div>
     </div>
-    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+    <script type="module">
+    // Import the functions you need from the SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        "apiKey": "AIzaSyAkvuzmGmXX0XezhSeOqltGKAVfwHHo5M4",
+        "authDomain": "newupdatedcanteen.firebaseapp.com",
+        "databaseURL": "https://newupdatedcanteen-default-rtdb.asia-southeast1.firebasedatabase.app",
+        "projectId": "newupdatedcanteen",
+        "storageBucket": "newupdatedcanteen.appspot.com",
+        "messagingSenderId": "333329487780",
+        "appId": "1:333329487780:web:bd5d1e17021470e8dc9331",
+        "measurementId": "G-R6490XPPFG"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+  
+    // Reference to a specific user's balance and RFID (based on user ID)
+    const userId = '36395E32';  // Replace with dynamic userID when necessary
+    const userRef = ref(database, 'users/' + userId);
+  
+    // Listen for changes in the balance and other data
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        // Update the HTML with balance and user ID
+        document.querySelector('.balance-container strong').innerText = data.balance;
+        document.querySelector('.rfid-container').innerHTML = `ID Number <br>${userId}`;
+      }
+    });
+  </script>
+  
+      
     <script src="{% static 'js/index.js' %}"></script>
 </main>
 {% endblock content %}

@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from firebase_admin import db
 import pyrebase
+from .models import User_RFID
 
 config = {
     "apiKey": "AIzaSyAkvuzmGmXX0XezhSeOqltGKAVfwHHo5M4",
@@ -24,24 +25,45 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 database = firebase.database()
+auth = firebase.auth()
 
 
 # Home view
 @login_required
 def home(request):
-    user = database.child('users').child('36395E32')
-    user_id= user.child('user_id').get().val()
-    balance = user.child('balance').get().val()
+    initial_id = request.user.id
+    user_rfid = User_RFID.objects.get(user=request.user).rfid
+    print(f'user_rfid: {user_rfid}')
+    
+    # Access the specific user node using the RFID as the key
+    user = database.child('users').child(user_rfid)
+    
+    # Fetch the user data directly from the specific user's path
+    user_data = user.get().val()
+    print(f'user_data: {user_data}')
+    
+    if user_data:
+        # Access balance and user_id fields from the retrieved data
+        user_id = user_data.get('user_id', None)
+        balance = user_data.get('balance', None)
+        
+        print(f'user_id: {user_rfid}')
+        print(f'user_balance: {balance}')
+    else:
+        user_id = None
+        balance = None
     
     context = {
         'balance': balance,
-        'user_id': user_id,
+        'user_id': user_rfid,
     }
     
-    return render(request, 'student/home.html')
+    return render(request, 'student/home.html', context)
 
+def assign_rfid_to_user(user, rfid_value):
+    rfid = User_RFID.objects.create(user=user, rfid=rfid_value, balance=0)
+    return rfid
 
-# Login view
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -51,6 +73,15 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                
+                # Store RFID in session after login
+                try:
+                    rfid = User_RFID.objects.get(user=user).rfid
+                    request.session['rfid'] = rfid
+                except User_RFID.DoesNotExist:
+                    # Handle the case where the user has no associated RFID
+                    request.session['rfid'] = None
+                
                 messages.success(request, "You have successfully logged in.")
                 return redirect('home')
             else:
@@ -250,4 +281,3 @@ def delete_order_item(request, item_id):
         messages.success(request, f"Item {order_item.item.name} has been deleted from your order.")
 
     return redirect(reverse('order'))  # Redirect to cart or appropriate page
-

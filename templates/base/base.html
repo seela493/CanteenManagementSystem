@@ -26,8 +26,8 @@
         {% block search %}
         {% endblock search %}
         <div class="profile">
-            <img src="{% static 'images/profile.png' %}" alt="Profile Icon">
-            <a href="{% url 'setting' %}">Nimesh Basnet</a>
+            <img src="{% static 'images/default.jpg' %}" alt="Profile Icon">
+            <a href="{% url 'setting' %}">{{ user.username }}</a>
         </div>
     </header>
     

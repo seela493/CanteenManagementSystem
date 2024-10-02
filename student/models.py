@@ -20,7 +20,7 @@ class Item(models.Model):
         return self.name
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     items = models.ManyToManyField('Item', through='OrderItem')
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
@@ -60,3 +60,27 @@ class OrderItem(models.Model):
     
     def total(self):
         return self.item.price * self.quantity
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    rfid = models.CharField(max_length=100, unique=True, blank=True, null=True)  # RFID field
+    balance = models.DecimalField(max_digits=10, decimal_places=3, default=0)
+    has_applied_for_rfid = models.BooleanField(default=False)  # Track RFID application status
+    country = models.CharField(max_length=100, blank=True, null=True)  # Optional field for 'country'
+    profile_photo = models.ImageField(upload_to='profiles/', blank=True, null=True) 
+    
+    def __str__(self):
+        return self.user.username
+    
+class User_RFID(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    rfid = models.CharField(max_length=100, unique=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
+    def __str__(self):
+        return f'{self.user} - {self.rfid}'
+    
+
+    

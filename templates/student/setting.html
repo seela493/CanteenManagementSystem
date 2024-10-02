@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{% static 'setting.css' %}">
 {% endblock link %}
 
-
 {% block content %}
 <section class="content">
     <div class="logout-btn">
@@ -14,27 +13,31 @@
         <img src="{% static 'images/logout.svg' %}" alt="logout">
     </div>
     <div class="edit-container">
-        <h2>Edit Profile <span class="edit-icon"><img src="{% static 'images/edit.svg' %}"alt="edit"></span></h2>
+        <h2>Edit Profile <span class="edit-icon"><img src="{% static 'images/edit.svg' %}" alt="edit"></span></h2>
         <div class="profile-photo">
-            <img src="{% static 'images/profile.png' %}" alt="Profile Photo">
+            <img src="{% static 'images/default.jpg' %}" alt="Profile Photo" id="profile-image">
             <div class="photo-buttons">
-                <button class="add-photo">Add Photo</button>
-                <button class="remove-photo">Remove Photo</button>
+                <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                <button type="button" id="add-photo" class="add-photo">Add Photo</button>
+                <button type="button" id="remove-photo" class="remove-photo" disabled>Remove Photo</button>
             </div>
         </div>
         <form class="profile-form" method="POST">
             {% csrf_token %}
-            <div class="input-group">
-                <input type="text" placeholder="Nimesh" required>
-                <input type="text" placeholder="Basnet" required>
+            <div class="input-group">   
+                <input type="text" name="username" placeholder="Username" required>  <!-- Added username field -->
+                <input type="text" name="first_name" placeholder="Nimesh" required>
             </div>
             <div class="input-group">
-                <input type="email" placeholder="nemesh99@gmail.com" required>
-                <input type="tel" placeholder="980034342" required>
+                <input type="text" name="last_name" placeholder="Basnet" required>
+                <input type="email" name="email" placeholder="nimesh99@gmail.com" required>
             </div>
             <div class="input-group">
-                <input type="text" placeholder="Maitidevi" required>
-                <input type="text" placeholder="Nepal" required>
+                <input type="tel" name="phone" placeholder="980034342" required>
+                <input type="text" name="location" placeholder="Maitidevi" required>
+            </div>
+            <div class="input-group">
+                <input type="text" name="country" placeholder="Nepal" required>
             </div>
             <div class="form-buttons">
                 <button type="button" class="discard-button">DISCARD</button>
@@ -43,4 +46,43 @@
         </form>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const photoUpload = document.getElementById('photo-upload');
+        const profileImage = document.getElementById('profile-image');
+        const addPhotoButton = document.getElementById('add-photo');
+        const removePhotoButton = document.getElementById('remove-photo');
+        
+        let uploadedImage = null;
+        const originalImageSrc = profileImage.src;
+
+        // Function to handle photo upload
+        addPhotoButton.addEventListener('click', () => {
+            photoUpload.click();
+        });
+
+        photoUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    uploadedImage = e.target.result;
+                    profileImage.src = uploadedImage;
+                    removePhotoButton.disabled = false; // Enable the remove button
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file.');
+            }
+        });
+
+        // Function to remove the uploaded photo
+        removePhotoButton.addEventListener('click', () => {
+            uploadedImage = null;
+            profileImage.src = originalImageSrc; // Reset to original
+            removePhotoButton.disabled = true; // Disable the remove button again
+        });
+    });
+</script>
 {% endblock content %}

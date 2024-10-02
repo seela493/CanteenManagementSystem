@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock link %}
+
+{% block content %}
+    <h1>Create Order</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="item">Select Item:</label>
+        <select name="item_id" id="item">
+            {% for item in items %}
+                <option value="{{ item.id }}">{{ item.name }} - ${{ item.price }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="1" min="1">
+
+        <button type="submit">Place Order</button>
+    </form>
+{% endblock content %}

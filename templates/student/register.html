@@ -53,15 +53,17 @@
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirm Password</label>
-                     <!-- <input type="confirm-password" id="confirm-password" name="confirm-password" required> -->
+                    <!-- <input type="confirm-password" id="confirm-password" name="confirm-password" required> -->
                     {{ form.password2 }}
                 </div>
                 {% if messages %}
-                    {% for message in messages %}
-                    <div class="message">
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="message error-message">
                     <p>{{ message }}</p>
-                    </div>
-                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
                 {% endif %}
                 <button type="submit" class="register">REGISTER</button>
             </form>
